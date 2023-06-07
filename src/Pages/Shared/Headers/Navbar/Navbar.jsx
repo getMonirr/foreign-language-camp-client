@@ -1,7 +1,26 @@
 import { Link, NavLink } from "react-router-dom";
 import CampContainer from "../../../../components/Shared/CampContainer";
+import { useContext, useEffect } from "react";
+import { ThemeContext } from "../../../../Provider/DarkThemeProvider";
 
 const Navbar = () => {
+  // control dark mode
+  const { dark, setDark } = useContext(ThemeContext);
+  const handleDarkMode = (e) => {
+    setDark(e.target.checked);
+  };
+  useEffect(() => {
+    const htmlElement = document.querySelector("html");
+
+    if (dark) {
+      htmlElement.setAttribute("data-theme", "dark");
+      htmlElement.classList.add("dark");
+    } else {
+      htmlElement.setAttribute("data-theme", "light");
+      htmlElement.classList.remove("dark");
+    }
+  }, [dark]);
+
   // navItems
   const navItems = (
     <>
@@ -58,6 +77,13 @@ const Navbar = () => {
             <Link>
               <button className="btn">Login</button>
             </Link>
+            <div>
+              <input
+                onClick={handleDarkMode}
+                type="checkbox"
+                className="toggle"
+              />
+            </div>
           </div>
         </div>
       </CampContainer>
