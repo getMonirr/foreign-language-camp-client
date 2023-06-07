@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import CampContainer from "../../../../components/Shared/CampContainer";
 import CampBtn from "../../../../components/Shared/CampBtn";
 import { useDark } from "../../../../Hooks/useDark";
+import "./Navbar.css";
 
 const Navbar = () => {
   // control dark mode
@@ -13,17 +14,25 @@ const Navbar = () => {
   // navItems
   const navItems = (
     <>
-      <li>
-        <NavLink to="/">Home</NavLink>
+      <li className="hover:text-camp-secondary text-lg">
+        <NavLink className="hover:bg-none" to="/">
+          Home
+        </NavLink>
       </li>
-      <li>
-        <NavLink to="/classes">Classes</NavLink>
+      <li className="hover:text-camp-secondary text-lg">
+        <NavLink className="hover:bg-none" to="/classes">
+          Classes
+        </NavLink>
       </li>
-      <li>
-        <NavLink to="/instructors">Instructors</NavLink>
+      <li className="hover:text-camp-secondary text-lg">
+        <NavLink className="hover:bg-none" to="/instructors">
+          Instructors
+        </NavLink>
       </li>
-      <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
+      <li className="hover:text-camp-secondary text-lg">
+        <NavLink className="hover:bg-none" to="/dashboard">
+          Dashboard
+        </NavLink>
       </li>
     </>
   );
@@ -52,7 +61,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-medium"
               >
                 {navItems}
               </ul>
@@ -63,10 +72,12 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1">{navItems}</ul>
+            <ul className="menu menu-horizontal px-1 font-medium">
+              {navItems}
+            </ul>
           </div>
           <div className="navbar-end">
-            <Link>
+            <Link to="/login">
               <CampBtn>Login</CampBtn>
             </Link>
             <div className="ml-4">

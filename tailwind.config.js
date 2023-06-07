@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         "camp-mon": "Montserrat",
+        "camp-dis": "'Playfair Display'",
       },
       colors: {
         "camp-primary": "#17543E",
@@ -15,6 +16,7 @@ export default {
         "camp-icon-bg": "#BDEAD9",
         "camp-icon-hover": "#7dceaf",
         "camp-nav": "#16563f",
+        "camp-bg-2": "#002023",
       },
     },
   },
