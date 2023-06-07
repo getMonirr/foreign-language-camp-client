@@ -1,25 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
 import CampContainer from "../../../../components/Shared/CampContainer";
-import { useContext, useEffect } from "react";
-import { ThemeContext } from "../../../../Provider/DarkThemeProvider";
+import CampBtn from "../../../../components/Shared/CampBtn";
+import { useDark } from "../../../../Hooks/useDark";
 
 const Navbar = () => {
   // control dark mode
-  const { dark, setDark } = useContext(ThemeContext);
+  const { setDark } = useDark();
   const handleDarkMode = (e) => {
     setDark(e.target.checked);
   };
-  useEffect(() => {
-    const htmlElement = document.querySelector("html");
-
-    if (dark) {
-      htmlElement.setAttribute("data-theme", "dark");
-      htmlElement.classList.add("dark");
-    } else {
-      htmlElement.setAttribute("data-theme", "light");
-      htmlElement.classList.remove("dark");
-    }
-  }, [dark]);
 
   // navItems
   const navItems = (
@@ -68,16 +57,19 @@ const Navbar = () => {
                 {navItems}
               </ul>
             </div>
-            <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+            <Link className="btn btn-ghost normal-case text-2xl hover:bg-transparent">
+              <p className="font-bold text-camp-primary">Foreign Language</p>
+              <p className="text-camp-secondary">Camp</p>
+            </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">{navItems}</ul>
           </div>
           <div className="navbar-end">
             <Link>
-              <button className="btn">Login</button>
+              <CampBtn>Login</CampBtn>
             </Link>
-            <div>
+            <div className="ml-4">
               <input
                 onClick={handleDarkMode}
                 type="checkbox"
