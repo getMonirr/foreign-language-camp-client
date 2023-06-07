@@ -1,8 +1,11 @@
 
+import { useForm } from "react-hook-form";
 import SocialLogin from "../../components/Shared/SocialLogin";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+    const { register, handleSubmit } = useForm();
+    const onSubmit = data => console.log(data);
   return (
     <div className="hero min-h-[calc(100vh-100px)] bg-camp-bg-2">
       <div className="hero-content w-3/12">
@@ -13,17 +16,17 @@ const Login = () => {
                 WellCome Back
               </h3>
               <p className="font-camp-mon text-2xl font-semibold text-camp-secondary">
-                {" "}
                 Please login
               </p>
             </div>
-            <form className="space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  type="text"
+                {...register('email',{require: true})}
+                  type="email"
                   placeholder="email"
                   className="input input-bordered"
                 />
@@ -33,9 +36,10 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="text"
+                  type="password"
                   placeholder="password"
                   className="input input-bordered"
+                  {...register('password',{require: true})}
                 />
               </div>
               <div className="form-control mt-6">
