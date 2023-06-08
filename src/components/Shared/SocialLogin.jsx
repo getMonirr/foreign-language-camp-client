@@ -2,6 +2,7 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
@@ -11,24 +12,45 @@ const SocialLogin = () => {
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
 
+  // put a user in DB
+  const putUser = async (user) => {
+    const { data } = await axios.put(
+      `${import.meta.env.VITE_API_LINK}/users?email=${user?.email}`,
+      user
+    );
+    return data;
+  };
+
   // handle google sign in
   const handleGoogleSignIn = () => {
     googleSignIn()
-      .then((result) => {
+      .then(async (result) => {
         if (result?.user) {
-          toast.success("Log in successful", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          const loggedUser = result?.user;
 
-          // navigate user
-          navigate(from);
+          // save user in data base
+          const newUser = {
+            name: loggedUser?.displayName || "unknown",
+            email: loggedUser?.email,
+            role: "user",
+          };
+
+          const data = await putUser(newUser);
+
+          if (data?.upsertedCount || data?.matchedCount) {
+            toast.success("Log in successful", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            // navigate user
+            navigate(from);
+          }
         }
       })
       .catch((err) => console.log(err));
