@@ -8,7 +8,8 @@
         "price": 250,
         "status": "approved",
         "enrolledStudents": 5,
-        "rating": 4.5
+        "rating": 4.5,
+        "description": "Join our Spanish Immersion course and dive into the rich and vibrant world of the Spanish language. Through a combination of interactive activities, engaging discussions, and practical exercises."
     },
     {
         "name": "German for Beginners",
@@ -19,7 +20,8 @@
         "price": 200,
         "status": "approved",
         "enrolledStudents": 50,
-        "rating": 4.2
+        "rating": 4.2,
+        "description": "Embark on a journey to learn German from scratch with our German for Beginners course. In a supportive and interactive environment, you'll acquire the fundamental skills needed to communicate effectively in German."
     },
     {
         "name": "Mandarin Conversation",
@@ -30,7 +32,8 @@
         "price": 300,
         "status": "approved",
         "enrolledStudents": 40,
-        "rating": 4.8
+        "rating": 4.8,
+        "description": "Take your Mandarin speaking skills to the next level with our Mandarin Conversation course. Designed for learners with prior knowledge of Mandarin."
     },
     {
         "name": "Italian Language",
@@ -41,7 +44,8 @@
         "price": 280,
         "status": "approved",
         "enrolledStudents": 30,
-        "rating": 4.6
+        "rating": 4.6,
+        "description": "Discover the beauty of the Italian language and culture through our Italian Language course. Whether you're a complete beginner or have some prior knowledge."
     },
     {
         "name": "Japanese for Travelers",
@@ -52,7 +56,8 @@
         "price": 220,
         "status": "approved",
         "enrolledStudents": 20,
-        "rating": 4.4
+        "rating": 4.4,
+        "description": "Planning a trip to Japan? Our Japanese for Travelers course is designed to equip you with essential Japanese language skills and cultural knowledge for your journey."
     },
     {
         "name": "Arabic Calligraphy",
@@ -63,6 +68,7 @@
         "price": 180,
         "status": "approved",
         "enrolledStudents": 10,
-        "rating": 4.7
+        "rating": 4.7,
+        "description": "Discover the ancient art of Arabic Calligraphy in our specialized course. Delve into the intricate strokes and fluid movements that make up this beautiful form of expression."
     }
 ]
