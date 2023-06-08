@@ -1,12 +1,13 @@
 import { useDark } from "../../Hooks/useDark";
 
-const CampBtn = ({ children, handleOnClick }) => {
+const CampBtn = ({ children, handleOnClick, disabled = false }) => {
   const { dark } = useDark();
   const bgImg = dark
     ? "linear-gradient(130deg, #CFA649 93%, #FFFFFF00 90%)"
     : "linear-gradient(130deg, #17543E 93%, #FFFFFF00 90%)";
   return (
     <button
+      disabled={disabled}
       onClick={handleOnClick}
       style={{
         backgroundImage: bgImg,

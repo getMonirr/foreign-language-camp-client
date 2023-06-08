@@ -1,10 +1,12 @@
-import React from "react";
 import CampBtn from "../../components/Shared/CampBtn";
 import { Rating } from "@smastrom/react-rating";
 import { MdEventSeat } from "react-icons/md";
 import { FaDollarSign } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
 
 const SingleCard = ({ item }) => {
+  const { user } = useAuth();
+
   const {
     name,
     image,
@@ -17,7 +19,7 @@ const SingleCard = ({ item }) => {
   } = item;
   // TODO: change rating color
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl mb-8 lg:mb-16 w-full max-w-5xl mx-auto">
+    <div className={`card lg:card-side shadow-xl mb-8 lg:mb-16 w-full max-w-5xl mx-auto ${seats === 0 ? 'bg-red-300' : 'bg-base-200'}`}>
       <figure className="lg:w-1/3">
         <img
           className="h-[250px] lg:h-[350px] w-full object-cover object-center"
@@ -54,7 +56,8 @@ const SingleCard = ({ item }) => {
           </div>
         </div>
         <div className="card-actions justify-end">
-          <CampBtn>Add To Select</CampBtn>
+          {/* TODO: apply for instructor and admin condition */}
+          <CampBtn disabled={!user || seats === 0}>Add To Select</CampBtn>
         </div>
       </div>
     </div>

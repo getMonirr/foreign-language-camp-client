@@ -4,7 +4,7 @@
         "image": "https://swiperjs.com/demos/images/nature-1.jpg",
         "instructor": "Maria Rodriguez",
         "instructorEmail": "maria.rodriguez@example.com",
-        "seats": 15,
+        "seats": 0,
         "price": 250,
         "status": "approved",
         "enrolledStudents": 5,
