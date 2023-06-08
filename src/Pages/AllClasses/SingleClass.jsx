@@ -7,9 +7,13 @@ import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import useSecureAxios from "../../Hooks/useSecureAxios";
+import { useEffect, useState } from "react";
 
 const SingleCard = ({ item }) => {
   const { user } = useAuth();
+
+  const [isSelected, setIsSelected] = useState(false);
 
   // navigate
   const navigate = useNavigate();
@@ -24,9 +28,28 @@ const SingleCard = ({ item }) => {
     seats,
     instructor,
     description,
+    _id,
   } = item;
 
   // add to DB
+  const secureAxios = useSecureAxios();
+
+  useEffect(() => {
+    const fetchSelectedClasses = async () => {
+      const { data } = await secureAxios.get(
+        `/selectedCarts?email=${user?.email}`
+      );
+      const isSelect =
+        data &&
+        Array.isArray(data) &&
+        data.some((item) => item.classId === _id);
+      setIsSelected(isSelect);
+    };
+
+    if (user) {
+      fetchSelectedClasses();
+    }
+  }, [user?.email, _id, secureAxios]);
 
   // handle add class to select
   const handleAddToSelect = (item) => {
@@ -46,11 +69,11 @@ const SingleCard = ({ item }) => {
     const newCart = {
       classId: _id,
       ...itemWithOutId,
+      email: user?.email,
     };
     axios
       .post(`${import.meta.env.VITE_API_LINK}/selectedCarts`, newCart)
       .then((res) => {
-        console.log(res.data);
         if (res?.data?.insertedId) {
           toast.success("Class is selected", {
             position: "top-right",
@@ -62,6 +85,7 @@ const SingleCard = ({ item }) => {
             progress: undefined,
             theme: "light",
           });
+          setIsSelected(true);
         }
       });
   };
@@ -112,7 +136,7 @@ const SingleCard = ({ item }) => {
           {/* TODO: apply for instructor and admin condition */}
           <CampBtn
             handleOnClick={() => handleAddToSelect(item)}
-            disabled={seats === 0}
+            disabled={seats === 0 || isSelected}
           >
             Add To Select
           </CampBtn>
