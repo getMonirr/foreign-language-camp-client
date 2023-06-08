@@ -10,13 +10,21 @@ import AuthProvider from "./Provider/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+// react query
+import { QueryClient, QueryClientProvider } from "react-query";
+
+// Create a client
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <DarkThemeProvider>
-      <AuthProvider>
-        <RouterProvider router={Routes} />
-        <ToastContainer />
-      </AuthProvider>
-    </DarkThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <DarkThemeProvider>
+        <AuthProvider>
+          <RouterProvider router={Routes} />
+          <ToastContainer />
+        </AuthProvider>
+      </DarkThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
