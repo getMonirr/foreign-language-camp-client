@@ -60,6 +60,7 @@ const Navbar = () => {
       )}
     </>
   );
+  console.log(user);
 
   return (
     <div>
@@ -104,6 +105,11 @@ const Navbar = () => {
             {user && user ? (
               <>
                 <CampBtn handleOnClick={handleLogOut}>Log Out</CampBtn>
+                <div className="avatar ml-4">
+                  <div className="w-10 rounded-full ring ring-camp-primary ring-offset-base-100 ring-offset-2">
+                    <img src={user?.photoURL} />
+                  </div>
+                </div>
               </>
             ) : (
               <Link to="/login">
