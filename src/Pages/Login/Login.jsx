@@ -1,13 +1,45 @@
-
 import { useForm } from "react-hook-form";
 import SocialLogin from "../../components/Shared/SocialLogin";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Login = () => {
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+  const [error, setError] = useState("");
+  const { loginUser } = useAuth();
+  // for navigation
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    if (data?.email && data?.password) {
+      loginUser(data?.email, data?.password)
+        .then((result) => {
+          if (result.user) {
+            toast.success("Log in successful", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+            // navigate user
+            navigate(from);
+          }
+        })
+        .catch((err) => {
+          setError(err?.message);
+        });
+    }
+  };
   return (
-    <div className="hero min-h-[calc(100vh-100px)] bg-camp-bg-2">
+    <div className="hero min-h-[calc(100vh-100px)] bg-camp-bg-2 py-8">
       <div className="hero-content w-3/12">
         <div className="card flex-shrink-0 w-full max-w-5xl shadow-2xl bg-base-100">
           <div className="card-body">
@@ -18,6 +50,7 @@ const Login = () => {
               <p className="font-camp-mon text-2xl font-semibold text-camp-secondary">
                 Please login
               </p>
+              {error && <p className="text-red-500">{error}</p>}
             </div>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div className="form-control">
@@ -25,7 +58,7 @@ const Login = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                {...register('email',{require: true})}
+                  {...register("email", { require: true })}
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
@@ -39,7 +72,7 @@ const Login = () => {
                   type="password"
                   placeholder="password"
                   className="input input-bordered"
-                  {...register('password',{require: true})}
+                  {...register("password", { require: true })}
                 />
               </div>
               <div className="form-control mt-6">
@@ -55,7 +88,7 @@ const Login = () => {
               <p>
                 Your are new here?{" "}
                 <span className="text-camp-secondary">
-                  <Link to="/registration">Registration here</Link>
+                  <Link to="/sign-up">Registration here</Link>
                 </span>
               </p>
             </div>

@@ -1,0 +1,56 @@
+[
+    {
+        "className": "Spanish Immersion",
+        "image": "spanish_immersion.jpg",
+        "instructor": "Maria Rodriguez",
+        "instructorEmail": "maria.rodriguez@example.com",
+        "seats": 15,
+        "price": 250,
+        "status": "approved"
+    },
+    {
+        "className": "German for Beginners",
+        "image": "german_for_beginners.jpg",
+        "instructor": "Hans Schmidt",
+        "instructorEmail": "hans.schmidt@example.com",
+        "seats": 12,
+        "price": 200,
+        "status": "approved"
+    },
+    {
+        "className": "Mandarin Conversation",
+        "image": "mandarin_conversation.jpg",
+        "instructor": "Li Wei",
+        "instructorEmail": "li.wei@example.com",
+        "seats": 10,
+        "price": 300,
+        "status": "approved"
+    },
+    {
+        "className": "Italian Language and Culture",
+        "image": "italian_language_culture.jpg",
+        "instructor": "Giulia Rossi",
+        "instructorEmail": "giulia.rossi@example.com",
+        "seats": 8,
+        "price": 280,
+        "status": "approved"
+    },
+    {
+        "className": "Japanese for Travelers",
+        "image": "japanese_for_travelers.jpg",
+        "instructor": "Takeshi Nakamura",
+        "instructorEmail": "takeshi.nakamura@example.com",
+        "seats": 10,
+        "price": 220,
+        "status": "approved"
+    },
+    {
+        "className": "Arabic Calligraphy",
+        "image": "arabic_calligraphy.jpg",
+        "instructor": "Ahmed Hassan",
+        "instructorEmail": "ahmed.hassan@example.com",
+        "seats": 10,
+        "price": 180,
+        "status": "approved"
+    }
+]

@@ -1,0 +1,7 @@
+
+  .swiper-button-prev, .swiper-rtl .swiper-button-next{
+    @apply bg-red-500 rounded-full p-6 -ml-8
+  }
+  .swiper-button-next:after, .swiper-button-prev:after{
+    @apply text-camp-primary text-3xl
+  }

@@ -3,12 +3,34 @@ import CampContainer from "../../../../components/Shared/CampContainer";
 import CampBtn from "../../../../components/Shared/CampBtn";
 import { useDark } from "../../../../Hooks/useDark";
 import "./Navbar.css";
+import useAuth from "../../../../Hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const { user, logOut } = useAuth();
+
   // control dark mode
   const { setDark } = useDark();
   const handleDarkMode = (e) => {
     setDark(e.target.checked);
+  };
+
+  // handle log out
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Log out Successful", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   // navItems
@@ -29,11 +51,13 @@ const Navbar = () => {
           Instructors
         </NavLink>
       </li>
-      <li className="hover:text-camp-secondary text-lg">
-        <NavLink className="hover:bg-none" to="/dashboard">
-          Dashboard
-        </NavLink>
-      </li>
+      {user && (
+        <li className="hover:text-camp-secondary text-lg">
+          <NavLink className="hover:bg-none" to="/dashboard">
+            Dashboard
+          </NavLink>
+        </li>
+      )}
     </>
   );
 
@@ -77,9 +101,15 @@ const Navbar = () => {
             </ul>
           </div>
           <div className="navbar-end">
-            <Link to="/login">
-              <CampBtn>Login</CampBtn>
-            </Link>
+            {user && user ? (
+              <>
+                <CampBtn handleOnClick={handleLogOut}>Log Out</CampBtn>
+              </>
+            ) : (
+              <Link to="/login">
+                <CampBtn>Login</CampBtn>
+              </Link>
+            )}
             <div className="ml-4">
               <input
                 onClick={handleDarkMode}

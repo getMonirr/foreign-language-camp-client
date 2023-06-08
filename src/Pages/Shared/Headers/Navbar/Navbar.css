@@ -4,3 +4,6 @@
 .menu :where(li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)):hover, .menu :where(li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)):hover{
     @apply bg-transparent
 }
+.menu :where(li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)).active, .menu :where(li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)).active{
+    @apply bg-transparent
+}
