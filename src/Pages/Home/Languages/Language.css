@@ -1,7 +1,12 @@
-
-  .swiper-button-prev, .swiper-rtl .swiper-button-next{
-    @apply bg-red-500 rounded-full p-6 -ml-8
-  }
-  .swiper-button-next:after, .swiper-button-prev:after{
-    @apply text-camp-primary text-3xl
-  }
+.languageSwiper .swiper-button-prev-lan,
+.languageSwiper .swiper-rtl .swiper-button-next-lan {
+  @apply bg-camp-secondary rounded-full p-6 -ml-8 cursor-pointer;
+}
+.languageSwiper .swiper-button-next-lan,
+.languageSwiper .swiper-rtl .swiper-button-prev-lan {
+  @apply bg-camp-secondary rounded-full p-6 -ml-8 cursor-pointer;
+}
+.languageSwiper .swiper-button-next-lan:after,
+.languageSwiper .swiper-button-prev-lan:after {
+  @apply text-camp-primary text-3xl font-bold;
+}

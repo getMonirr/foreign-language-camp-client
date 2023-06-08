@@ -1,4 +1,5 @@
 import CampContainer from "../../../components/Shared/CampContainer";
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import { FaUsers } from "react-icons/fa";
 import bgIcon from "../../../assets/bg/Icon-Grid.svg";
 // Import Swiper React components
@@ -7,10 +8,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import './Language.css'
+import "./Language.css";
 
 // import required modules
 import { Navigation } from "swiper";
+import CampBtn from "../../../components/Shared/CampBtn";
 
 const Languages = () => {
   const languages = [
@@ -47,13 +49,15 @@ const Languages = () => {
   ];
   return (
     <CampContainer>
-      <div className="my-8">
+      <div className="-mt-40 px-24 relative languageSwiper">
         <Swiper
-          navigation={true}
           modules={[Navigation]}
           slidesPerView={3}
           spaceBetween={30}
-          className="mySwiper"
+          navigation={{
+            nextEl: ".swiper-button-next-lan",
+            prevEl: ".swiper-button-prev-lan",
+          }}
         >
           {languages.map((lan, index) => (
             <SwiperSlide key={index}>
@@ -74,6 +78,12 @@ const Languages = () => {
             </SwiperSlide>
           ))}
         </Swiper>
+        <div className="swiper-button-prev-lan absolute left-0 top-[38%]">
+          <AiOutlineLeft className="h-6 w-6" />
+        </div>
+        <div className="swiper-button-next-lan absolute right-0 top-[38%]">
+          <AiOutlineRight className="h-6 w-6" />
+        </div>
       </div>
     </CampContainer>
   );
