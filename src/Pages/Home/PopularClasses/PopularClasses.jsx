@@ -1,4 +1,3 @@
-import React from "react";
 import useClasses from "../../../Hooks/useClasses";
 import SectionHeading from "../../../components/Shared/SectionHeading";
 import ClassCard from "./ClassCard";

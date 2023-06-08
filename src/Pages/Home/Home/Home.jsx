@@ -1,6 +1,7 @@
 import Banner from "../Banner/Banner";
 import Languages from "../Languages/Languages";
 import PopularClasses from "../PopularClasses/PopularClasses";
+import PopularInstructor from "../PopularInstructor/PopularInstructor";
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Banner />
       <Languages />
       <PopularClasses />
+      <PopularInstructor />
     </>
   );
 };

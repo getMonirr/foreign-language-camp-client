@@ -2,73 +2,79 @@
     {
         "name": "Maria Rodriguez",
         "email": "maria.rodriguez@example.com",
-        "image": "maria_rodriguez.jpg",
+        "image": "https://picsum.photos/id/1/200/300",
         "takenClasses": 20,
         "classesName": [
             "Spanish Immersion",
             "Latin Dance",
             "Cultural Cuisine"
         ],
-        "studentsEnrolled": 45
+        "studentsEnrolled": 45,
+        "designation": "Language Instructor"
     },
     {
         "name": "Hans Schmidt",
         "email": "hans.schmidt@example.com",
-        "image": "hans_schmidt.jpg",
+        "image": "https://picsum.photos/id/1/200/300",
         "takenClasses": 12,
         "classesName": [
             "German for Beginners",
             "German Literature",
             "Business German"
         ],
-        "studentsEnrolled": 30
+        "studentsEnrolled": 30,
+        "designation": "Language Instructor"
     },
     {
         "name": "Li Wei",
         "email": "li.wei@example.com",
-        "image": "li_wei.jpg",
+        "image": "https://picsum.photos/id/1/200/300",
         "takenClasses": 25,
         "classesName": [
             "Mandarin Conversation",
             "Chinese Calligraphy",
             "Chinese Cuisine"
         ],
-        "studentsEnrolled": 50
+        "studentsEnrolled": 50,
+        "designation": "Language Instructor"
     },
     {
         "name": "Giulia Rossi",
         "email": "giulia.rossi@example.com",
-        "image": "giulia_rossi.jpg",
+        "image": "https://picsum.photos/id/1/200/300",
         "takenClasses": 18,
         "classesName": [
             "Italian Language and Culture",
             "Italian Opera",
             "Italian Cooking"
         ],
-        "studentsEnrolled": 35
+        "studentsEnrolled": 35,
+        "designation": "Language Instructor"
     },
     {
         "name": "Takeshi Nakamura",
         "email": "takeshi.nakamura@example.com",
-        "image": "takeshi_nakamura.jpg",
+        "image": "https://picsum.photos/id/1/200/300",
         "takenClasses": 22,
         "classesName": [
             "Japanese for Travelers",
             "Japanese Tea Ceremony",
             "Japanese Anime"
         ],
-        "studentsEnrolled": 40
+        "studentsEnrolled": 40,
+        "designation": "Language Instructor"
     },
     {
         "name": "Ahmed Hassan",
         "email": "ahmed.hassan@example.com",
-        "image": "ahmed_hassan.jpg",
+        "image": "https://picsum.photos/id/1/200/300",
         "takenClasses": 10,
         "classesName": [
             "Arabic Calligraphy",
             "Arabic Literature",
             "Arabic Conversation"
         ],
-        "studentsEnrolled": 25
+        "studentsEnrolled": 25,
+        "designation": "Language Instructor"
     }
 ]

@@ -17,7 +17,7 @@ const ClassCard = ({ item }) => {
       <div className="card-body">
         <h2 className="card-title mb-6 text-2xl">
           {name}
-          <div className="badge badge-secondary bg-camp-secondary border-camp-secondary text-white">
+          <div className="badge badge-secondary">
             Enrolled: {enrolledStudents}
           </div>
         </h2>
