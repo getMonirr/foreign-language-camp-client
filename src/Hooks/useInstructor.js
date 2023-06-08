@@ -7,7 +7,9 @@ const useInstructor = () => {
   const { data: instructors = [], isLoading: isInstructorLoading } = useQuery({
     queryKey: ["instructors"],
     queryFn: async () => {
-      const { data } = await axios("instructors.json");
+      const { data } = await axios(
+        `${import.meta.env.VITE_API_LINK}/instructors`
+      );
       return data;
     },
   });

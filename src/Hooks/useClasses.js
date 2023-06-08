@@ -6,7 +6,7 @@ const useClasses = () => {
     queryKey: ["classes"],
     queryFn: async () => {
       // TODO: transform to server
-      const { data } = await axios("classes.json");
+      const { data } = await axios(`${import.meta.env.VITE_API_LINK}/classes`);
       return data;
     },
   });
