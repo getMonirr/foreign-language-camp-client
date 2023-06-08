@@ -9,6 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -45,7 +46,24 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (loggedUser) => {
       setUser(loggedUser);
-      setLoading(false);
+      if (loggedUser) {
+        const userInfo = {
+          email: loggedUser?.email,
+        };
+
+        // jwt token
+        axios
+          .post(`${import.meta.env.VITE_API_LINK}/jwt`, userInfo)
+          .then((res) => {
+            const token = res?.data?.token;
+            if (token) {
+              setLoading(false);
+              localStorage.setItem("camp-access-token", token);
+            } else {
+              localStorage.removeItem("camp-access-token");
+            }
+          });
+      }
     });
     return () => {
       unSubscribe();

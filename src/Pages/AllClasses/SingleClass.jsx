@@ -16,10 +16,21 @@ const SingleCard = ({ item }) => {
     seats,
     instructor,
     description,
+    _id,
   } = item;
+
+  // handle add class to select
+  const handleAddToSelect = (id) => {
+    console.log(id);
+  };
+
   // TODO: change rating color
   return (
-    <div className={`card lg:card-side shadow-xl mb-8 lg:mb-16 w-full max-w-5xl mx-auto ${seats === 0 ? 'bg-red-300' : 'bg-base-200'}`}>
+    <div
+      className={`card lg:card-side shadow-xl mb-8 lg:mb-16 w-full max-w-5xl mx-auto ${
+        seats === 0 ? "bg-red-300" : "bg-base-200"
+      }`}
+    >
       <figure className="lg:w-1/3">
         <img
           className="h-[250px] lg:h-[350px] w-full object-cover object-center"
@@ -57,7 +68,12 @@ const SingleCard = ({ item }) => {
         </div>
         <div className="card-actions justify-end">
           {/* TODO: apply for instructor and admin condition */}
-          <CampBtn disabled={!user || seats === 0}>Add To Select</CampBtn>
+          <CampBtn
+            handleOnClick={() => handleAddToSelect(_id)}
+            disabled={!user || seats === 0}
+          >
+            Add To Select
+          </CampBtn>
         </div>
       </div>
     </div>
