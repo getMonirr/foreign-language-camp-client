@@ -2,7 +2,7 @@ import { FcGoogle } from "react-icons/fc";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+import putUser from "../../API/putUser";
 
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
@@ -11,15 +11,6 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
-
-  // put a user in DB
-  const putUser = async (user) => {
-    const { data } = await axios.put(
-      `${import.meta.env.VITE_API_LINK}/users?email=${user?.email}`,
-      user
-    );
-    return data;
-  };
 
   // handle google sign in
   const handleGoogleSignIn = () => {

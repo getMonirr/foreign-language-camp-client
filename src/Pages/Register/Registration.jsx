@@ -5,6 +5,7 @@ import useAuth from "../../Hooks/useAuth";
 import { useState } from "react";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
+import putUser from "../../API/putUser";
 
 const Registration = () => {
   const { createUser, logOut } = useAuth();
@@ -22,7 +23,7 @@ const Registration = () => {
 
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    // TODO: more work watch with password validation and confirm password
     // password validation
     const REGEX = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z\d@$!%*?&]{6,}$/;
     const isValid = REGEX.test(data?.password);
@@ -44,21 +45,34 @@ const Registration = () => {
               displayName: data?.name,
               photoURL: data?.photoUrl,
             })
-              .then(() => {
-                toast.success("Registration successful, login now", {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: true,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "light",
-                });
+              .then(async () => {
+                const loggedUser = result?.user;
 
-                // logout & navigate user
-                logOut();
-                navigate("/login");
+                // create user info
+                const newUser = {
+                  email: loggedUser?.email,
+                  name: loggedUser?.displayName || "unknown",
+                  role: "user",
+                };
+
+                // put user in database
+                const serverRes = await putUser(newUser);
+                if (serverRes?.upsertedCount) {
+                  toast.success("Registration successful, login now", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
+
+                  // logout & navigate user
+                  logOut();
+                  navigate("/login");
+                }
               })
               .catch((err) => {
                 setError(err?.message);

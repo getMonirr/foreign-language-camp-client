@@ -3,9 +3,17 @@ import { Rating } from "@smastrom/react-rating";
 import { MdEventSeat } from "react-icons/md";
 import { FaDollarSign } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const SingleCard = ({ item }) => {
   const { user } = useAuth();
+
+  // navigate
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     name,
@@ -16,12 +24,46 @@ const SingleCard = ({ item }) => {
     seats,
     instructor,
     description,
-    _id,
   } = item;
 
+  // add to DB
+
   // handle add class to select
-  const handleAddToSelect = (id) => {
-    console.log(id);
+  const handleAddToSelect = (item) => {
+    if (!user) {
+      return Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "You have to login first to select",
+        confirmButtonText: "Login",
+      }).then(() => {
+        navigate("/login", { state: { from: location } });
+      });
+    }
+
+    // add to selected cart
+    const { _id, ...itemWithOutId } = item;
+    const newCart = {
+      classId: _id,
+      ...itemWithOutId,
+    };
+    axios
+      .post(`${import.meta.env.VITE_API_LINK}/selectedCarts`, newCart)
+      .then((res) => {
+        console.log(res.data);
+        if (res?.data?.insertedId) {
+          toast.success("Class is selected", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      });
   };
 
   // TODO: change rating color
@@ -69,8 +111,8 @@ const SingleCard = ({ item }) => {
         <div className="card-actions justify-end">
           {/* TODO: apply for instructor and admin condition */}
           <CampBtn
-            handleOnClick={() => handleAddToSelect(_id)}
-            disabled={!user || seats === 0}
+            handleOnClick={() => handleAddToSelect(item)}
+            disabled={seats === 0}
           >
             Add To Select
           </CampBtn>
