@@ -4,7 +4,7 @@ import blobBg from '../../../assets/bg/blob-bg.png';
 const Hero = ({ content }) => {
   const { title, subtitle, desc, img } = content;
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 items-center ">
+    <div className="grid grid-cols-1 lg:grid-cols-2 items-center min-h-screen">
       <div className="space-y-6">
         <h2 className="text-7xl font-semibold font-camp-dis text-camp-secondary">
           {title}

@@ -11,6 +11,8 @@ import Hero from "./Hero";
 import bgImage from "../../../assets/bg/bg-img.jpg";
 
 const Banner = () => {
+
+  // TODO: make dynamic
   const content = [
     {
       title: "Refreshing",

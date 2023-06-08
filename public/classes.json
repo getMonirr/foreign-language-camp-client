@@ -1,56 +1,68 @@
 [
     {
-        "className": "Spanish Immersion",
-        "image": "spanish_immersion.jpg",
+        "name": "Spanish Immersion",
+        "image": "https://swiperjs.com/demos/images/nature-1.jpg",
         "instructor": "Maria Rodriguez",
         "instructorEmail": "maria.rodriguez@example.com",
         "seats": 15,
         "price": 250,
-        "status": "approved"
+        "status": "approved",
+        "enrolledStudents": 5,
+        "rating": 4.5
     },
     {
-        "className": "German for Beginners",
-        "image": "german_for_beginners.jpg",
+        "name": "German for Beginners",
+        "image": "https://swiperjs.com/demos/images/nature-2.jpg",
         "instructor": "Hans Schmidt",
         "instructorEmail": "hans.schmidt@example.com",
         "seats": 12,
         "price": 200,
-        "status": "approved"
+        "status": "approved",
+        "enrolledStudents": 50,
+        "rating": 4.2
     },
     {
-        "className": "Mandarin Conversation",
-        "image": "mandarin_conversation.jpg",
+        "name": "Mandarin Conversation",
+        "image": "https://swiperjs.com/demos/images/nature-3.jpg",
         "instructor": "Li Wei",
         "instructorEmail": "li.wei@example.com",
         "seats": 10,
         "price": 300,
-        "status": "approved"
+        "status": "approved",
+        "enrolledStudents": 40,
+        "rating": 4.8
     },
     {
-        "className": "Italian Language and Culture",
-        "image": "italian_language_culture.jpg",
+        "name": "Italian Language",
+        "image": "https://swiperjs.com/demos/images/nature-4.jpg",
         "instructor": "Giulia Rossi",
         "instructorEmail": "giulia.rossi@example.com",
         "seats": 8,
         "price": 280,
-        "status": "approved"
+        "status": "approved",
+        "enrolledStudents": 30,
+        "rating": 4.6
     },
     {
-        "className": "Japanese for Travelers",
-        "image": "japanese_for_travelers.jpg",
+        "name": "Japanese for Travelers",
+        "image": "https://swiperjs.com/demos/images/nature-5.jpg",
         "instructor": "Takeshi Nakamura",
         "instructorEmail": "takeshi.nakamura@example.com",
         "seats": 10,
         "price": 220,
-        "status": "approved"
+        "status": "approved",
+        "enrolledStudents": 20,
+        "rating": 4.4
     },
     {
-        "className": "Arabic Calligraphy",
-        "image": "arabic_calligraphy.jpg",
+        "name": "Arabic Calligraphy",
+        "image": "https://swiperjs.com/demos/images/nature-6.jpg",
         "instructor": "Ahmed Hassan",
         "instructorEmail": "ahmed.hassan@example.com",
         "seats": 10,
         "price": 180,
-        "status": "approved"
+        "status": "approved",
+        "enrolledStudents": 10,
+        "rating": 4.7
     }
 ]
