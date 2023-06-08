@@ -7,6 +7,8 @@ import AllInstructors from "../Pages/AllInstructors/AllInstructors";
 import AllClasses from "../Pages/AllClasses/AllClasses";
 import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
 import UserHome from "../Pages/Dashboard/User/UserHome/UserHome";
+import PrivateRoute from "./PrivateRoute";
+import SelectedClasses from "../Pages/Dashboard/User/UserHome/SelectedClasses/SelectedClasses";
 
 const Routes = createBrowserRouter([
   {
@@ -37,13 +39,21 @@ const Routes = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "user-home",
-        element: <UserHome/>
-      }
-    ]
+        element: <UserHome />,
+      },
+      {
+        path: "selected-classes",
+        element: <SelectedClasses />,
+      },
+    ],
   },
 ]);
 
