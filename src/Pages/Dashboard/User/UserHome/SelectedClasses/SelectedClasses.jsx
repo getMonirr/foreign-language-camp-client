@@ -1,26 +1,63 @@
-import { useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import SectionHeading from "../../../../../components/Shared/SectionHeading";
 import useAuth from "../../../../../Hooks/useAuth";
 import useSecureAxios from "../../../../../Hooks/useSecureAxios";
 import CampContainer from "../../../../../components/Shared/CampContainer";
 import CampBtn from "../../../../../components/Shared/CampBtn";
+import { toast } from "react-toastify";
 
 const SelectedClasses = () => {
   // use auth
   const { user } = useAuth();
 
   // use secure axios
-  const axiosSecure = useSecureAxios();
+  const secureAxios = useSecureAxios();
 
+  // client
+  const queryClient = useQueryClient();
+
+  // get data
   const { data: selectedClasses = [] } = useQuery({
     queryKey: ["selectedClasses", user?.email],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(
+      const { data } = await secureAxios.get(
         `/selectedCarts?email=${user?.email}`
       );
       return data;
     },
   });
+
+  // mutation
+  const mutation = useMutation({
+    mutationFn: async (id) => {
+      const { data } = await secureAxios.delete(
+        `/selectedCarts/${id}?email=${user?.email}`
+      );
+      return data;
+    },
+    onSuccess: (data) => {
+      // after deleted
+      if (data?.deletedCount) {
+        toast.success("Delete Successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      }
+      queryClient.invalidateQueries("selectedClasses");
+    },
+  });
+
+  // handle class delete
+  const handleClassDelete = (id) => {
+    mutation.mutate(id);
+  };
+
   // TODO: make beautiful the table
 
   return (
@@ -45,6 +82,7 @@ const SelectedClasses = () => {
               {/* row 1 */}
               {(selectedClasses &&
                 Array.isArray(selectedClasses) &&
+                selectedClasses.length > 0 &&
                 selectedClasses.map((item, index) => (
                   <tr key={item._id}>
                     <th>{index + 1}</th>
@@ -73,7 +111,11 @@ const SelectedClasses = () => {
                     <td>{item.seats}</td>
                     <td>{item.enrolledStudents}</td>
                     <th>
-                      <CampBtn>Delete</CampBtn>
+                      <CampBtn
+                        handleOnClick={() => handleClassDelete(item._id)}
+                      >
+                        Delete
+                      </CampBtn>
                     </th>
                     <th>
                       <CampBtn>
@@ -82,6 +124,9 @@ const SelectedClasses = () => {
                     </th>
                   </tr>
                 ))) ||
+                (selectedClasses.length <= 0 && (
+                  <tr className="text-center">{"Selected Classes not Found"}</tr>
+                )) ||
                 "Selected Classes not Found"}
             </tbody>
           </table>
