@@ -3,15 +3,21 @@ import { useQuery } from "react-query";
 import useAuth from "../../../../../../Hooks/useAuth";
 import useSecureAxios from "../../../../../../Hooks/useSecureAxios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const CheckOutForm = ({ item }) => {
-  const { price, _id } = item;
+  const [paymentErr, setPaymentErr] = useState("");
+  const { price } = item;
   const stripe = useStripe();
   const elements = useElements();
+
+  const navigate = useNavigate();
 
   const { user } = useAuth();
   const secureAxios = useSecureAxios();
 
+  // get client secret
   const { data: clientSecret } = useQuery({
     queryKey: ["clientSecret", price, user?.email],
     queryFn: async () => {
@@ -43,6 +49,7 @@ const CheckOutForm = ({ item }) => {
 
     if (error) {
       console.log("error", error);
+      setPaymentErr(error?.message);
     } else {
       console.log("paymentMethod", paymentMethod);
     }
@@ -60,54 +67,62 @@ const CheckOutForm = ({ item }) => {
 
     if (confirmError) {
       console.log(confirmError);
+      setPaymentErr(confirmError?.message);
     }
-    if (paymentIntent.status === "succeeded") {
+    if (paymentIntent?.status === "succeeded") {
       // store payment info in DB
-      // TODO: make design
+
+      // TODO: make design and show error
+      const { _id, seats, enrolledStudents, ...rest } = item;
 
       const paymentInfo = {
         email: user?.email,
         transactionId: paymentIntent.id,
-        price,
         date: new Date(),
         status: "paid",
-        classesId: _id,
+        seats: seats - 1,
+        enrolledStudents: enrolledStudents + 1,
+        ...rest,
       };
 
       secureAxios.post("/payments", paymentInfo).then((res) => {
         if (res?.data?.insertedId) {
           toast.success("successfully paid");
+          navigate("/dashboard/enrolled-classes");
         }
       });
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <CardElement
-        options={{
-          style: {
-            base: {
-              fontSize: "16px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
+    <>
+      {paymentErr && <p className="text-red-500 mb-2">{paymentErr}</p>}
+      <form onSubmit={handleSubmit}>
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: "16px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#aab7c4",
+                },
+              },
+              invalid: {
+                color: "#9e2146",
               },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
-      <button
-        type="submit"
-        className="btn btn-primary"
-        disabled={!stripe || !clientSecret}
-      >
-        Pay
-      </button>
-    </form>
+          }}
+        />
+        <button
+          type="submit"
+          className="btn btn-primary"
+          disabled={!stripe || !clientSecret}
+        >
+          Pay
+        </button>
+      </form>
+    </>
   );
 };
 

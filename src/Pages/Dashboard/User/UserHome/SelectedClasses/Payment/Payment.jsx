@@ -26,13 +26,18 @@ const Payment = () => {
     },
     enabled: Boolean(id && user),
   });
+  console.log(item);
 
   return (
     <div>
-      <SectionHeading>Payment</SectionHeading>
-      <Elements stripe={stripePromise}>
-        <CheckOutForm item={item} />
-      </Elements>
+      {item && (
+        <>
+          <SectionHeading>Payment</SectionHeading>
+          <Elements stripe={stripePromise}>
+            <CheckOutForm item={item} />
+          </Elements>
+        </>
+      )}
     </div>
   );
 };

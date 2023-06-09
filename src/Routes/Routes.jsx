@@ -10,6 +10,7 @@ import UserHome from "../Pages/Dashboard/User/UserHome/UserHome";
 import PrivateRoute from "./PrivateRoute";
 import SelectedClasses from "../Pages/Dashboard/User/UserHome/SelectedClasses/SelectedClasses";
 import Payment from "../Pages/Dashboard/User/UserHome/SelectedClasses/Payment/Payment";
+import EnrolledClass from "../Pages/Dashboard/User/UserHome/EnrolledClass/EnrolledClass";
 
 const Routes = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const Routes = createBrowserRouter([
       {
         path: "payment/:id",
         element: <Payment />,
+      },
+      {
+        path: "enrolled-classes",
+        element: <EnrolledClass />,
       },
     ],
   },
