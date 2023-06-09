@@ -5,6 +5,7 @@ import useSecureAxios from "../../../../../Hooks/useSecureAxios";
 import CampContainer from "../../../../../components/Shared/CampContainer";
 import CampBtn from "../../../../../components/Shared/CampBtn";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const SelectedClasses = () => {
   // use auth
@@ -118,14 +119,18 @@ const SelectedClasses = () => {
                       </CampBtn>
                     </th>
                     <th>
-                      <CampBtn>
-                        Pay <span>${item.price}</span>
-                      </CampBtn>
+                      <Link to={`/dashboard/payment/${item?._id}`}>
+                        <CampBtn>
+                          Pay <span>${item.price}</span>
+                        </CampBtn>
+                      </Link>
                     </th>
                   </tr>
                 ))) ||
                 (selectedClasses.length <= 0 && (
-                  <tr className="text-center">{"Selected Classes not Found"}</tr>
+                  <tr className="text-center">
+                    {"Selected Classes not Found"}
+                  </tr>
                 )) ||
                 "Selected Classes not Found"}
             </tbody>
