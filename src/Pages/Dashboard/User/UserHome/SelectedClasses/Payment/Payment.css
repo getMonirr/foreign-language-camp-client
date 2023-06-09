@@ -1,5 +1,5 @@
-input,
-select {
+.camp input,
+.camp select {
   display: block;
   border: none;
   font-size: 18px;
@@ -15,7 +15,7 @@ select {
   width: 500px;
 }
 
-input::placeholder {
+.camp input::placeholder {
   color: #aab7c4;
 }
 

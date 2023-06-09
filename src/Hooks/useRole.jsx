@@ -16,7 +16,7 @@ const useRole = () => {
     },
     enabled: Boolean(user),
   });
-  return role;
+  return { role };
 };
 
 export default useRole;

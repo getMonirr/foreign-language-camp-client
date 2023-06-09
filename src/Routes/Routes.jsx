@@ -12,6 +12,12 @@ import SelectedClasses from "../Pages/Dashboard/User/UserHome/SelectedClasses/Se
 import Payment from "../Pages/Dashboard/User/UserHome/SelectedClasses/Payment/Payment";
 import EnrolledClass from "../Pages/Dashboard/User/UserHome/EnrolledClass/EnrolledClass";
 import PaymentHistory from "../Pages/Dashboard/User/UserHome/PaymentHistory/PaymentHistory";
+import InstructorHome from "../Pages/Dashboard/Instructor/InstructorHome/InstructorHome";
+import AddClass from "../Pages/Dashboard/Instructor/AddClass/AddClass";
+import MyClasses from "../Pages/Dashboard/Instructor/MyClasses/MyClasses";
+import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import ManageClasses from "../Pages/Dashboard/Admin/ManageClasses/ManageClasses";
 
 const Routes = createBrowserRouter([
   {
@@ -43,11 +49,12 @@ const Routes = createBrowserRouter([
   {
     path: "dashboard",
     element: (
-      <PrivateRoute>
-        <Dashboard />
-      </PrivateRoute>
+      // <PrivateRoute>
+      <Dashboard />
+      // </PrivateRoute>
     ),
     children: [
+      // user dashboard
       {
         path: "user-home",
         element: <UserHome />,
@@ -67,6 +74,34 @@ const Routes = createBrowserRouter([
       {
         path: "payment-history",
         element: <PaymentHistory />,
+      },
+
+      // instructor dashboard
+      {
+        path: "instructor-home",
+        element: <InstructorHome />,
+      },
+      {
+        path: "add-class",
+        element: <AddClass />,
+      },
+      {
+        path: "my-classes",
+        element: <MyClasses />,
+      },
+
+      // admin dashboard
+      {
+        path: "admin-home",
+        element: <AdminHome />,
+      },
+      {
+        path: "manage-users",
+        element: <ManageUsers />,
+      },
+      {
+        path: "manage-classes",
+        element: <ManageClasses />,
       },
     ],
   },

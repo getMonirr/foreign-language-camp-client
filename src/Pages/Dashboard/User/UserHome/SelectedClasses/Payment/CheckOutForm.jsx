@@ -98,7 +98,7 @@ const CheckOutForm = ({ item }) => {
   return (
     <>
       {paymentErr && <p className="text-red-500 mb-2">{paymentErr}</p>}
-      <form onSubmit={handleSubmit}>
+      <form className="camp" onSubmit={handleSubmit}>
         <CardElement
           options={{
             style: {
