@@ -73,6 +73,7 @@ const CheckOutForm = ({ item }) => {
       // store payment info in DB
 
       // TODO: make design and show error
+      // eslint-disable-next-line no-unused-vars
       const { _id, seats, enrolledStudents, ...rest } = item;
 
       const paymentInfo = {
