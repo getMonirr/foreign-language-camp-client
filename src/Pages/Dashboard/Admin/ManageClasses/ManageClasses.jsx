@@ -1,7 +1,62 @@
-
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import useAuth from "../../../../Hooks/useAuth";
+import useSecureAxios from "../../../../Hooks/useSecureAxios";
 import SectionHeading from "../../../../components/Shared/SectionHeading";
+import AdminBtn from "../../../../components/Dashboard/AdminBtn";
+import { toast } from "react-toastify";
 
 const ManageClasses = () => {
+  const { user } = useAuth();
+  const secureAxios = useSecureAxios();
+
+  const { data: allClasses } = useQuery({
+    queryKey: ["allClasses", user?.email],
+    queryFn: async () => {
+      const { data } = await secureAxios.get(
+        `/all-classes?email=${user?.email}`
+      );
+      return data;
+    },
+    enabled: Boolean(user?.email),
+  });
+
+  // update status
+  const updateStatus = async ({ id, status }) => {
+    const { data } = await secureAxios.patch(
+      `/all-classes/${id}?email=${user?.email}`,
+      { status }
+    );
+    return data;
+  };
+
+  // query client
+  const queryClient = useQueryClient();
+
+  // mutation
+  const mutation = useMutation({
+    mutationKey: ["allClasses", user?.email],
+    mutationFn: updateStatus,
+    onSuccess: (data, { status }) => {
+      if (data?.modifiedCount) {
+        if (status === "approved") {
+          toast.success("Class has been approved.");
+        } else if (status === "deny") {
+          toast.error("Class has been denied.");
+        }
+      }
+      queryClient.invalidateQueries("allClasses");
+    },
+  });
+
+  // handle deny class
+  const handleDenyClass = (id) => {
+    mutation.mutate({ id, status: "deny" });
+  };
+
+  // handle approved
+  const handleApprovedClass = (id) => {
+    mutation.mutate({ id, status: "approved" });
+  };
   return (
     <div>
       <SectionHeading>Manage All Classes</SectionHeading>
@@ -12,7 +67,7 @@ const ManageClasses = () => {
             <thead>
               <tr className="text-center bg-camp-primary text-white">
                 <th>#</th>
-                <th>Class Name</th>
+                <th>Class Details</th>
                 <th>Instructor Details</th>
                 <th>Available Seats</th>
                 <th>Price</th>
@@ -24,45 +79,66 @@ const ManageClasses = () => {
             </thead>
             <tbody>
               {/* row 1 */}
-              <tr className="text-center">
-                <th>1
-                </th>
-                <td>
-                  <div className="flex items-center space-x-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src="/tailwind-css-component-profile-2@56w.png"
-                          alt="Avatar Tailwind CSS Component"
-                        />
+              {(allClasses &&
+                Array.isArray(allClasses) &&
+                allClasses.length > 0 &&
+                allClasses.map((item, index) => (
+                  <tr key={item._id}>
+                    <th>{index + 1}</th>
+                    <td>
+                      <div className="flex items-center space-x-3">
+                        <div className="avatar">
+                          <div className="mask mask-squircle w-12 h-12">
+                            <img src={item.image} alt={item.name} />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="font-bold">{item.name}</div>
+                          <div className="text-sm opacity-50 text-left">
+                            Rating:{" "}
+                            {(item?.rating && item?.rating) || "not rating yet"}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <div className="font-bold">Hart Hagerty</div>
-                      <div className="text-sm opacity-50">United States</div>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  ins name
-                  <br />
-                  <span className="badge badge-ghost badge-sm">
-                    ins email
-                  </span>
-                </td>
-                <td>100</td>
-                <td>$100</td>
-                <td>pending</td>
-                <th className="text-center">
-                  <button className="btn btn-primary btn-xs">Deny</button>
-                </th>
-                <th className="text-center">
-                  <button className="btn btn-primary btn-xs">Approve</button>
-                </th>
-                <th className="text-center">
-                  <button className="btn btn-primary btn-xs">Send Feedback</button>
-                </th>
-              </tr>
+                    </td>
+                    <td>
+                      {item.instructor}
+                      <br />
+                      <span className="badge badge-ghost badge-sm">
+                        {item.instructorEmail}
+                      </span>
+                    </td>
+                    <td>{item.seats}</td>
+                    <td>${item.price}</td>
+                    <td>{item.status}</td>
+                    <th className="text-center">
+                      <AdminBtn
+                        handleOnClick={() => handleDenyClass(item._id)}
+                        className="bg-orange-600 border-orange-500 hover:bg-orange-800 hover:border-orange-300"
+                        disabled={
+                          item.status === "deny" || item.status === "approved"
+                        }
+                      >
+                        Deny
+                      </AdminBtn>
+                    </th>
+                    <th className="text-center">
+                      <AdminBtn
+                        handleOnClick={() => handleApprovedClass(item._id)}
+                        disabled={
+                          item.status === "deny" || item.status === "approved"
+                        }
+                      >
+                        Approve
+                      </AdminBtn>
+                    </th>
+                    <th className="text-center">
+                      <AdminBtn>Feedback</AdminBtn>
+                    </th>
+                  </tr>
+                ))) ||
+                (allClasses?.length <= 0 && "no classes found") ||
+                "no classes found"}
             </tbody>
           </table>
         </div>

@@ -3,8 +3,6 @@ import SectionHeading from "../../../../../components/Shared/SectionHeading";
 import useAuth from "../../../../../Hooks/useAuth";
 import useSecureAxios from "../../../../../Hooks/useSecureAxios";
 import CampContainer from "../../../../../components/Shared/CampContainer";
-import CampBtn from "../../../../../components/Shared/CampBtn";
-import { Link } from "react-router-dom";
 
 const EnrolledClass = () => {
   const { user } = useAuth();
@@ -19,8 +17,6 @@ const EnrolledClass = () => {
       return data;
     },
   });
-
-  const handleClassDelete = () => {};
 
   return (
     <div>

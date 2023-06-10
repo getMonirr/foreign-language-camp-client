@@ -3,10 +3,10 @@ import { useQuery } from "react-query";
 
 const useClasses = () => {
   const { data: classes = [], isLoading: isClassesLoading } = useQuery({
-    queryKey: ["classes"],
+    queryKey: ["popularClasses"],
     queryFn: async () => {
       // TODO: transform to server
-      const { data } = await axios(`${import.meta.env.VITE_API_LINK}/classes`);
+      const { data } = await axios(`${import.meta.env.VITE_API_LINK}/popularClasses`);
       return data;
     },
   });
