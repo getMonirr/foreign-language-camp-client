@@ -4,10 +4,26 @@ import useSecureAxios from "../../../../Hooks/useSecureAxios";
 import SectionHeading from "../../../../components/Shared/SectionHeading";
 import AdminBtn from "../../../../components/Dashboard/AdminBtn";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import FeedbackModal from "./FeedbackModal";
 
 const ManageClasses = () => {
   const { user } = useAuth();
   const secureAxios = useSecureAxios();
+  const [classId, setClassId] = useState(null);
+
+  // for modal
+  let [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setClassId(null);
+  };
+
+  const openModal = (id) => {
+    setIsOpen(true);
+    setClassId(id);
+  };
 
   const { data: allClasses } = useQuery({
     queryKey: ["allClasses", user?.email],
@@ -48,6 +64,24 @@ const ManageClasses = () => {
     },
   });
 
+  // feedback mutation
+  const FeedbackMutation = useMutation({
+    mutationKey: ["allClasses", user?.email],
+    mutationFn: async ({ id, feedback }) => {
+      const { data } = await secureAxios.patch(
+        `/all-classes/${id}?email=${user?.email}`,
+        { feedback }
+      );
+      return data;
+    },
+    onSuccess: (data) => {
+      if (data?.modifiedCount) {
+        toast.success("Feedback has been send");
+      }
+      queryClient.invalidateQueries("allClasses");
+    },
+  });
+
   // handle deny class
   const handleDenyClass = (id) => {
     mutation.mutate({ id, status: "deny" });
@@ -57,6 +91,14 @@ const ManageClasses = () => {
   const handleApprovedClass = (id) => {
     mutation.mutate({ id, status: "approved" });
   };
+  // handle send feedback
+  const onSubmit = (data) => {
+    FeedbackMutation.mutate({
+      id: classId,
+      feedback: data?.feedback,
+    });
+  };
+
   return (
     <div>
       <SectionHeading>Manage All Classes</SectionHeading>
@@ -133,7 +175,9 @@ const ManageClasses = () => {
                       </AdminBtn>
                     </th>
                     <th className="text-center">
-                      <AdminBtn>Feedback</AdminBtn>
+                      <AdminBtn handleOnClick={() => openModal(item._id)}>
+                        Feedback
+                      </AdminBtn>
                     </th>
                   </tr>
                 ))) ||
@@ -143,6 +187,12 @@ const ManageClasses = () => {
           </table>
         </div>
       </div>
+      <FeedbackModal
+        isOpen={isOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+        onSubmit={onSubmit}
+      />
     </div>
   );
 };

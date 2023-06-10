@@ -4,6 +4,7 @@ import Loading from "../../components/Shared/Loading";
 import { Navigate } from "react-router-dom";
 
 const AdminRoutes = ({ children }) => {
+  // TODO: url typing get access must be protected
   const { user, loading } = useAuth();
   const { role } = useRole();
 
