@@ -5,9 +5,11 @@ import { useDark } from "../../../../Hooks/useDark";
 import "./Navbar.css";
 import useAuth from "../../../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import useRole from "../../../../Hooks/useRole";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const { role } = useRole();
 
   // control dark mode
   const { setDark } = useDark();
@@ -53,14 +55,22 @@ const Navbar = () => {
       </li>
       {user && (
         <li className="hover:text-camp-secondary text-lg">
-          <NavLink className="hover:bg-none" to="/dashboard">
+          <NavLink
+            className="hover:bg-none"
+            to={`${
+              role === "admin"
+                ? "/dashboard/admin-home"
+                : role === "instructor"
+                ? "/dashboard/instructor-home"
+                : "/dashboard/user-home"
+            }`}
+          >
             Dashboard
           </NavLink>
         </li>
       )}
     </>
   );
-  console.log(user);
 
   return (
     <div>

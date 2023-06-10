@@ -52,7 +52,6 @@ const Registration = () => {
                 const newUser = {
                   email: loggedUser?.email,
                   name: loggedUser?.displayName || "unknown",
-                  role: "user",
                 };
 
                 // put user in database

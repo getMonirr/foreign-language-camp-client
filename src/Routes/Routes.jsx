@@ -18,6 +18,8 @@ import MyClasses from "../Pages/Dashboard/Instructor/MyClasses/MyClasses";
 import AdminHome from "../Pages/Dashboard/Admin/AdminHome/AdminHome";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import ManageClasses from "../Pages/Dashboard/Admin/ManageClasses/ManageClasses";
+import InstructorRoutes from "./InstructorRoutes/InstructorRoutes";
+import AdminRoutes from "./AdminRoutes/AdminRoutes";
 
 const Routes = createBrowserRouter([
   {
@@ -49,9 +51,9 @@ const Routes = createBrowserRouter([
   {
     path: "dashboard",
     element: (
-      // <PrivateRoute>
-      <Dashboard />
-      // </PrivateRoute>
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
     ),
     children: [
       // user dashboard
@@ -79,29 +81,53 @@ const Routes = createBrowserRouter([
       // instructor dashboard
       {
         path: "instructor-home",
-        element: <InstructorHome />,
+        element: (
+          <InstructorRoutes>
+            <InstructorHome />
+          </InstructorRoutes>
+        ),
       },
       {
         path: "add-class",
-        element: <AddClass />,
+        element: (
+          <InstructorRoutes>
+            <AddClass />
+          </InstructorRoutes>
+        ),
       },
       {
         path: "my-classes",
-        element: <MyClasses />,
+        element: (
+          <InstructorRoutes>
+            <MyClasses />
+          </InstructorRoutes>
+        ),
       },
 
       // admin dashboard
       {
         path: "admin-home",
-        element: <AdminHome />,
+        element: (
+          <AdminRoutes>
+            <AdminHome />
+          </AdminRoutes>
+        ),
       },
       {
         path: "manage-users",
-        element: <ManageUsers />,
+        element: (
+          <AdminRoutes>
+            <ManageUsers />
+          </AdminRoutes>
+        ),
       },
       {
         path: "manage-classes",
-        element: <ManageClasses />,
+        element: (
+          <AdminRoutes>
+            <ManageClasses />
+          </AdminRoutes>
+        ),
       },
     ],
   },

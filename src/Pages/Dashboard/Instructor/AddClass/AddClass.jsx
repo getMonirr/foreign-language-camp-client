@@ -1,15 +1,56 @@
 import { useForm } from "react-hook-form";
 import CampBtn from "../../../../components/Shared/CampBtn";
 import SectionHeading from "../../../../components/Shared/SectionHeading";
+import useAuth from "../../../../Hooks/useAuth";
+import { getImgUrl } from "../../../../API/getImgUrl";
+import { useState } from "react";
+import { useMutation } from "react-query";
+import useSecureAxios from "../../../../Hooks/useSecureAxios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const { user } = useAuth();
+  const secureAxios = useSecureAxios();
+
+  const mutation = useMutation({
+    mutationKey: ["classes", user?.email],
+    mutationFn: async (singleClass) => {
+      const { data } = await secureAxios.post(
+        `/classes?email=${user?.email}`,
+        singleClass
+      );
+      return data;
+    },
+    onSuccess: (data) => {
+      if (data?.insertedId) {
+        toast.success("successfully added");
+        navigate("/dashboard/my-classes");
+      }
+    },
+  });
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = async (data) => {
+    const imgUrl = await getImgUrl(data?.image[0]);
+    if (imgUrl) {
+      data.image = imgUrl;
+      data.price = parseFloat(data?.price);
+      data.seats = parseInt(data?.seats);
+      const singleClass = {
+        ...data,
+        status: "pending",
+        enrolledStudents: 0,
+      };
+      // post server
+      mutation.mutate(singleClass);
+    } else {
+      setError("img server lost, please try again");
+    }
+  };
   return (
     <div>
       <SectionHeading>Add a Class</SectionHeading>
@@ -17,6 +58,9 @@ const AddClass = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-3xl space-y-6 mx-auto bg-base-300 p-16"
       >
+        <div>
+          <p className="text-red-500">{error}</p>
+        </div>
         <div className="lg:flex items-end justify-center gap-4">
           <div className="form-control w-full">
             <label className="label">
@@ -32,7 +76,7 @@ const AddClass = () => {
             />
           </div>
           <div>
-          <label className="label">
+            <label className="label">
               <span className="label-text font-bold">
                 Class Picture <span className="text-red-500">*</span>
               </span>
@@ -51,10 +95,10 @@ const AddClass = () => {
                 Instructor Name <span className="text-red-500">*</span>
               </span>
             </label>
-            <input
+            <input {...register('instructor')}
               type="text"
               className="input input-bordered w-full"
-              defaultValue={`instructor`}
+              defaultValue={`${user?.displayName}`}
               readOnly
             />
           </div>
@@ -64,10 +108,10 @@ const AddClass = () => {
                 Instructor Email <span className="text-red-500">*</span>
               </span>
             </label>
-            <input
+            <input {...register('instructorEmail')}
               type="text"
               className="input input-bordered w-full"
-              defaultValue={`instructorEmail`}
+              defaultValue={`${user?.email}`}
               readOnly
             />
           </div>
