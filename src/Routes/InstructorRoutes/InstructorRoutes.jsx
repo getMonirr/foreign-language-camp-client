@@ -10,11 +10,11 @@ const InstructorRoutes = ({ children }) => {
   if (loading) {
     return <Loading />;
   }
-  if (!user && role !== "instructor") {
-    return <Navigate to="/login" />;
+  if (user && role == "instructor") {
+    return children;
   }
 
-  return children;
+  return <Navigate to="/login" />;
 };
 
 export default InstructorRoutes;
