@@ -12,7 +12,6 @@ import "./Language.css";
 
 // import required modules
 import { Navigation } from "swiper";
-import CampBtn from "../../../components/Shared/CampBtn";
 
 const Languages = () => {
   const languages = [
@@ -49,10 +48,10 @@ const Languages = () => {
   ];
   return (
     <CampContainer>
-      <div className="-mt-40 px-24 relative languageSwiper">
+      <div className="mt-16 lg:-mt-40 lg:px-24 relative languageSwiper">
         <Swiper
           modules={[Navigation]}
-          slidesPerView={3}
+          slidesPerView={1}
           spaceBetween={30}
           navigation={{
             nextEl: ".swiper-button-next-lan",
@@ -62,14 +61,14 @@ const Languages = () => {
           {languages.map((lan, index) => (
             <SwiperSlide key={index}>
               <div
-                className="p-12 rounded-lg w-full text-white text-center relative"
+                className="p-4 lg:p-12 rounded-lg w-full text-white text-center relative"
                 style={{ backgroundImage: `url(${bgIcon})` }}
               >
                 {/* <div className="h-full w-full bg-camp-primary-hover bg-opacity-90 absolute left-0 top-0 z-10"></div> */}
                 <div className="z-30">
-                  <FaUsers className="mx-auto h-24 w-24 mb-6" />
-                  <p className="text-3xl my-3">Bangla</p>
-                  <p className="text-lg">
+                  <FaUsers className="mx-auto h-16 w-16 lg:h-24 lg:w-24 lg:mb-6" />
+                  <p className="text-2xl lg:text-3xl my-3">Bangla</p>
+                  <p className="lg:text-lg">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Recusandae, possimus!
                   </p>
@@ -78,11 +77,11 @@ const Languages = () => {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="swiper-button-prev-lan absolute left-0 top-[38%]">
-          <AiOutlineLeft className="h-6 w-6" />
+        <div className="swiper-button-prev-lan absolute left-10 lg:left-0 top-[38%] z-50">
+          <AiOutlineLeft className="lg:h-6 lg:w-6" />
         </div>
-        <div className="swiper-button-next-lan absolute right-0 top-[38%]">
-          <AiOutlineRight className="h-6 w-6" />
+        <div className="swiper-button-next-lan absolute right-2 lg:right-0 top-[38%] z-50">
+          <AiOutlineRight className="lg:h-6 lg:w-6" />
         </div>
       </div>
     </CampContainer>

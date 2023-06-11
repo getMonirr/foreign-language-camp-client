@@ -1,10 +1,10 @@
 .languageSwiper .swiper-button-prev-lan,
 .languageSwiper .swiper-rtl .swiper-button-next-lan {
-  @apply bg-camp-secondary rounded-full p-6 -ml-8 cursor-pointer;
+  @apply bg-camp-secondary rounded-full p-4 lg:p-6 text-white font-black -ml-8 cursor-pointer;
 }
 .languageSwiper .swiper-button-next-lan,
 .languageSwiper .swiper-rtl .swiper-button-prev-lan {
-  @apply bg-camp-secondary rounded-full p-6 -ml-8 cursor-pointer;
+  @apply bg-camp-secondary rounded-full p-4 lg:p-6 text-white font-black -ml-8 cursor-pointer;
 }
 .languageSwiper .swiper-button-next-lan:after,
 .languageSwiper .swiper-button-prev-lan:after {

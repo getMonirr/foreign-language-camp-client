@@ -1,4 +1,4 @@
-// TODO: replace local url to server
+
 
 import axios from "axios";
 import { useQuery } from "react-query";
@@ -8,7 +8,7 @@ const useInstructor = () => {
     queryKey: ["instructors"],
     queryFn: async () => {
       const { data } = await axios(
-        `${import.meta.env.VITE_API_LINK}/instructors`
+        `${import.meta.env.VITE_API_LINK}/popularInstructors`
       );
       return data;
     },

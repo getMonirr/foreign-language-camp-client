@@ -1,4 +1,5 @@
 import Banner from "../Banner/Banner";
+import ContactUs from "../ContactUs/ContactUs";
 import Languages from "../Languages/Languages";
 import PopularClasses from "../PopularClasses/PopularClasses";
 import PopularInstructor from "../PopularInstructor/PopularInstructor";
@@ -10,6 +11,7 @@ const Home = () => {
       <Languages />
       <PopularClasses />
       <PopularInstructor />
+      <ContactUs />
     </>
   );
 };

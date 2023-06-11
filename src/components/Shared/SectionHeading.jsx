@@ -1,9 +1,11 @@
-const SectionHeading = ({ children }) => {
+const SectionHeading = ({ children, title }) => {
   return (
-    <div className="text-center pt-4 mb-16">
-      <h2 className="text-5xl font-camp-dis font-bold">{children}</h2>
-      <div className="h-2 w-64 mt-3 bg-camp-primary mx-auto"></div>
-      <div className="h-1 w-48 mt-2 bg-camp-primary mx-auto"></div>
+    <div className="text-center pt-4 mb-16 max-w-2xl mx-auto">
+      <h2 className="text-4xl font-camp-dis text-camp-dis-col font-bold">
+        {title}
+      </h2>
+      <div className="h-[2px] w-14 my-6 bg-camp-secondary mx-auto"></div>
+      <p>{children}</p>
     </div>
   );
 };

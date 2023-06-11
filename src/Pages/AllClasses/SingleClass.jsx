@@ -9,9 +9,11 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import useSecureAxios from "../../Hooks/useSecureAxios";
 import { useEffect, useState } from "react";
+import useRole from "../../Hooks/useRole";
 
 const SingleCard = ({ item }) => {
   const { user } = useAuth();
+  const { role } = useRole();
 
   const [isSelected, setIsSelected] = useState(false);
 
@@ -133,10 +135,14 @@ const SingleCard = ({ item }) => {
           </div>
         </div>
         <div className="card-actions justify-end">
-          {/* TODO: apply for instructor and admin condition */}
           <CampBtn
             handleOnClick={() => handleAddToSelect(item)}
-            disabled={seats === 0 || isSelected}
+            disabled={
+              seats === 0 ||
+              isSelected ||
+              role === "admin" ||
+              role === "instructor"
+            }
           >
             Add To Select
           </CampBtn>

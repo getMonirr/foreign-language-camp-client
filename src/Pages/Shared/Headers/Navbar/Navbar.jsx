@@ -6,6 +6,7 @@ import "./Navbar.css";
 import useAuth from "../../../../Hooks/useAuth";
 import { toast } from "react-toastify";
 import useRole from "../../../../Hooks/useRole";
+import logo from "../../../../assets/logo/camp-logo.svg";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -69,6 +70,21 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
+      <li className="hover:text-camp-secondary text-lg">
+        <NavLink className="hover:bg-none" to="">
+          <div className="avatar ml-4 block lg:hidden">
+            <div className="w-10 rounded-full ring ring-camp-primary ring-offset-base-100 ring-offset-2">
+              <img src={user?.photoURL} />
+            </div>
+          </div>
+        </NavLink>
+        <CampBtn
+          className="block lg:hidden bg-white text-camp-secondary mt-2"
+          handleOnClick={handleLogOut}
+        >
+          Log Out
+        </CampBtn>
+      </li>
     </>
   );
 
@@ -96,14 +112,17 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-medium"
+                className="menu p-4 mt-2 menu-sm dropdown-content shadow bg-camp-secondary z-50 text-white rounded-box w-52 font-medium"
               >
                 {navItems}
               </ul>
             </div>
             <Link className="btn btn-ghost normal-case text-2xl hover:bg-transparent">
-              <p className="font-bold text-camp-primary">Foreign Language</p>
-              <p className="text-camp-secondary">Camp</p>
+              {/* <p className="font-bold text-camp-primary">Foreign Language</p>
+              <p className="text-camp-secondary">Camp</p> */}
+              <div>
+                <img className="w-56 lg:w-full -ml-6" src={logo} alt="logo" />
+              </div>
             </Link>
           </div>
           <div className="navbar-center hidden lg:flex">
@@ -114,8 +133,13 @@ const Navbar = () => {
           <div className="navbar-end">
             {user && user ? (
               <>
-                <CampBtn handleOnClick={handleLogOut}>Log Out</CampBtn>
-                <div className="avatar ml-4">
+                <CampBtn
+                  className="hidden lg:block btn px-8 text-white"
+                  handleOnClick={handleLogOut}
+                >
+                  Log Out
+                </CampBtn>
+                <div className="avatar ml-4 hidden lg:block">
                   <div className="w-10 rounded-full ring ring-camp-primary ring-offset-base-100 ring-offset-2">
                     <img src={user?.photoURL} />
                   </div>

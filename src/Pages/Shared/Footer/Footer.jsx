@@ -1,5 +1,5 @@
 import CampContainer from "../../../components/Shared/CampContainer";
-import Logo from "../../../assets/logo/camp-logo.png";
+import Logo from "../../../assets/logo/camp-logo-white.svg";
 
 const Footer = () => {
   return (
@@ -28,7 +28,7 @@ const Footer = () => {
             </div>
             <div>
               <span className="footer-title">Newsletter</span>
-              <div className="form-control w-80">
+              <div className="form-control lg:w-80">
                 <label className="label">
                   <span className="label-text text-white">
                     Enter your email address

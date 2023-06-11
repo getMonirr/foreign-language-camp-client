@@ -1,3 +1,40 @@
-.active{
-    @apply bg-white p-2 px-8 rounded-full rounded-tr-none rounded-br-none
+.dash-menu
+  > .menu
+  :where(
+    li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)
+  ).active,
+.dash-menu
+  > .menu
+  :where(
+    li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)
+  ).active {
+  background-color: white;
+  @apply py-[13px] rounded-full -mr-[14px] transition-none;
+}
+
+.my-nav > .my-nav > .active {
+  @apply bg-white py-8 px-8 rounded-full rounded-tr-none rounded-br-none;
+}
+
+.my-nav > .active::after,
+.my-nav > .active::before {
+  content: "";
+  position: absolute;
+}
+
+.my-nav > .active::before {
+  top: -80px;
+  right: -1px;
+  height: 80px;
+  width: 50px;
+  border-bottom-right-radius: 80px;
+  box-shadow: 0 42px 0 0 white;
+}
+.my-nav > .active::after {
+  top: 50px;
+  right: -1px;
+  height: 80px;
+  width: 50px;
+  border-top-right-radius: 80px;
+  box-shadow: 0 -42px 0 0 white;
 }

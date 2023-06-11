@@ -24,12 +24,12 @@ const ManageClasses = () => {
     setIsOpen(true);
     setClassId(id);
   };
-
+  // get all classes
   const { data: allClasses } = useQuery({
     queryKey: ["allClasses", user?.email],
     queryFn: async () => {
       const { data } = await secureAxios.get(
-        `/all-classes?email=${user?.email}`
+        `/admin-classes?email=${user?.email}`
       );
       return data;
     },
@@ -39,7 +39,7 @@ const ManageClasses = () => {
   // update status
   const updateStatus = async ({ id, status }) => {
     const { data } = await secureAxios.patch(
-      `/all-classes/${id}?email=${user?.email}`,
+      `/admin-classes/${id}?email=${user?.email}`,
       { status }
     );
     return data;
@@ -69,13 +69,14 @@ const ManageClasses = () => {
     mutationKey: ["allClasses", user?.email],
     mutationFn: async ({ id, feedback }) => {
       const { data } = await secureAxios.patch(
-        `/all-classes/${id}?email=${user?.email}`,
+        `/admin-classes/${id}?email=${user?.email}`,
         { feedback }
       );
       return data;
     },
     onSuccess: (data) => {
       if (data?.modifiedCount) {
+        closeModal();
         toast.success("Feedback has been send");
       }
       queryClient.invalidateQueries("allClasses");
@@ -112,6 +113,7 @@ const ManageClasses = () => {
                 <th>Class Details</th>
                 <th>Instructor Details</th>
                 <th>Available Seats</th>
+                <th>Enrolled Students</th>
                 <th>Price</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -150,13 +152,14 @@ const ManageClasses = () => {
                         {item.instructorEmail}
                       </span>
                     </td>
-                    <td>{item.seats}</td>
+                    <td className="text-end">{item.seats}</td>
+                    <td className="text-end">{item.enrolledStudents}</td>
                     <td>${item.price}</td>
                     <td>{item.status}</td>
                     <th className="text-center">
                       <AdminBtn
                         handleOnClick={() => handleDenyClass(item._id)}
-                        className="bg-orange-600 border-orange-500 hover:bg-orange-800 hover:border-orange-300"
+                        className="bg-red-300 hover:bg-blue-200"
                         disabled={
                           item.status === "deny" || item.status === "approved"
                         }

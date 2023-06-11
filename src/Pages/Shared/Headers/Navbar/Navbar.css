@@ -1,5 +1,5 @@
 .active{
-    @apply bg-transparent text-camp-secondary font-bold
+    @apply bg-transparent lg:text-camp-secondary text-slate-400 font-bold
 }
 .menu :where(li:not(.menu-title):not(.disabled) > *:not(ul):not(details):not(.menu-title)):hover, .menu :where(li:not(.menu-title):not(.disabled) > details > summary:not(.menu-title)):hover{
     @apply bg-transparent

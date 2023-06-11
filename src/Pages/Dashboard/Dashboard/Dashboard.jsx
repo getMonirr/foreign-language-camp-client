@@ -28,8 +28,8 @@ const Dashboard = () => {
               <RiSideBarFill className="h-6 w-6" style={{ fill: "white" }} />
             </label>
           </div>
-          <div className="drawer-side ">
-            <label htmlFor="my-drawer" className="drawer-overlay"></label>
+          <div className="drawer-side dash-menu">
+            <label htmlFor="my-drawer " className="drawer-overlay"></label>
             <ul className="menu pr-0 w-80  min-h-screen bg-camp-primary text-white pl-16 flex justify-evenly">
               {/* Sidebar content here */}
               <div>
