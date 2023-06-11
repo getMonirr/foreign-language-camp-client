@@ -5,9 +5,13 @@ import useSecureAxios from "../../../../../../Hooks/useSecureAxios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import CampBtn from "../../../../../../components/Shared/CampBtn";
+import { FaArrowRight } from "react-icons/fa";
+import { MdPayment } from "react-icons/md";
 
 const CheckOutForm = ({ item }) => {
   const [paymentErr, setPaymentErr] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const { price } = item;
   const stripe = useStripe();
   const elements = useElements();
@@ -32,6 +36,7 @@ const CheckOutForm = ({ item }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
 
     if (!stripe || !elements) {
       return;
@@ -68,6 +73,7 @@ const CheckOutForm = ({ item }) => {
     if (confirmError) {
       console.log(confirmError);
       setPaymentErr(confirmError?.message);
+      setIsLoading(false);
     }
     if (paymentIntent?.status === "succeeded") {
       // store payment info in DB
@@ -84,11 +90,13 @@ const CheckOutForm = ({ item }) => {
         seats: seats - 1,
         enrolledStudents: enrolledStudents + 1,
         ...rest,
+        cartId: _id,
       };
 
       secureAxios.post("/payments", paymentInfo).then((res) => {
         if (res?.data?.insertedId) {
           toast.success("successfully paid");
+          setIsLoading(false);
           navigate("/dashboard/enrolled-classes");
         }
       });
@@ -115,13 +123,14 @@ const CheckOutForm = ({ item }) => {
             },
           }}
         />
-        <button
-          type="submit"
-          className="btn btn-primary"
-          disabled={!stripe || !clientSecret}
-        >
+        {/* <button type="submit" className="btn btn-primary">
           Pay
-        </button>
+        </button> */}
+        <div>
+          <CampBtn disabled={!stripe || !clientSecret || isLoading}>
+            <MdPayment /> Pay <FaArrowRight />
+          </CampBtn>
+        </div>
       </form>
     </>
   );

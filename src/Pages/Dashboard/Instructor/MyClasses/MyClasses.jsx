@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 import useAuth from "../../../../Hooks/useAuth";
 import useSecureAxios from "../../../../Hooks/useSecureAxios";
-import CampBtn from "../../../../components/Shared/CampBtn";
 import SectionHeading from "../../../../components/Shared/SectionHeading";
+import AdminBtn from "../../../../components/Dashboard/AdminBtn";
 
 const MyClasses = () => {
   const secureAxios = useSecureAxios();
@@ -18,7 +18,10 @@ const MyClasses = () => {
 
   return (
     <div>
-      <SectionHeading>My All Classes</SectionHeading>
+      <SectionHeading title="My All Classes">
+        Here is your all added classes with admin feedback and also what is the
+        status of your class
+      </SectionHeading>
       <div>
         <div className="overflow-x-auto">
           <table className="table table-zebra">
@@ -63,7 +66,7 @@ const MyClasses = () => {
                       {(item?.feedback && item?.feedback) || "no feedback"}
                     </td>
                     <td className="text-center">
-                      <CampBtn>Update</CampBtn>
+                      <AdminBtn>Update</AdminBtn>
                     </td>
                   </tr>
                 ))) ||

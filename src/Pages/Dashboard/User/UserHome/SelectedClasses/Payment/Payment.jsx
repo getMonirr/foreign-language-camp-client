@@ -32,7 +32,10 @@ const Payment = () => {
     <div>
       {item && (
         <>
-          <SectionHeading>Payment</SectionHeading>
+          <SectionHeading title="Payment with Card">
+            Give your Card details for purchase a class. Example: enter
+            424242...
+          </SectionHeading>
           <Elements stripe={stripePromise}>
             <CheckOutForm item={item} />
           </Elements>

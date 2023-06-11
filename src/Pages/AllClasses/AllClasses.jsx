@@ -18,8 +18,8 @@ const AllClasses = () => {
     },
   });
   return (
-    <div>
-      <SectionHeading>Our All Classes</SectionHeading>
+    <div className="my-32">
+      <SectionHeading title="Our All Classes">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum magni tempore, quae asperiores nemo fuga? Perspiciatis exercitationem reprehenderit corrupti repellat.</SectionHeading>
       <CampContainer>
         <div className="">
           {(classes &&

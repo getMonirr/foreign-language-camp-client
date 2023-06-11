@@ -3,9 +3,10 @@ import SectionHeading from "../../../../../components/Shared/SectionHeading";
 import useAuth from "../../../../../Hooks/useAuth";
 import useSecureAxios from "../../../../../Hooks/useSecureAxios";
 import CampContainer from "../../../../../components/Shared/CampContainer";
-import CampBtn from "../../../../../components/Shared/CampBtn";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
+import AdminBtn from "../../../../../components/Dashboard/AdminBtn";
+import { FaMoneyBillAlt, FaTrashAlt } from "react-icons/fa";
 
 const SelectedClasses = () => {
   // use auth
@@ -63,7 +64,9 @@ const SelectedClasses = () => {
 
   return (
     <div>
-      <SectionHeading>My Selected Classes</SectionHeading>
+      <SectionHeading title="My Selected Classes">
+        Here is your all Selected Class
+      </SectionHeading>
       <CampContainer>
         <div className="overflow-x-auto">
           <table className="table">
@@ -97,7 +100,7 @@ const SelectedClasses = () => {
                         <div>
                           <div className="font-bold">{item.name}</div>
                           <div className="text-sm opacity-50">
-                            {item.rating}
+                            Rating: {item.rating}
                           </div>
                         </div>
                       </div>
@@ -112,17 +115,19 @@ const SelectedClasses = () => {
                     <td>{item.seats}</td>
                     <td>{item.enrolledStudents}</td>
                     <th>
-                      <CampBtn
+                      <AdminBtn
+                        icon={FaTrashAlt}
+                        className="bg-red-300"
                         handleOnClick={() => handleClassDelete(item._id)}
                       >
                         Delete
-                      </CampBtn>
+                      </AdminBtn>
                     </th>
                     <th>
                       <Link to={`/dashboard/payment/${item?._id}`}>
-                        <CampBtn>
+                        <AdminBtn icon={FaMoneyBillAlt}>
                           Pay <span>${item.price}</span>
-                        </CampBtn>
+                        </AdminBtn>
                       </Link>
                     </th>
                   </tr>

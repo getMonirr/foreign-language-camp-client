@@ -8,6 +8,7 @@ import { useMutation } from "react-query";
 import useSecureAxios from "../../../../Hooks/useSecureAxios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { FaPlusCircle } from "react-icons/fa";
 
 const AddClass = () => {
   const [error, setError] = useState("");
@@ -53,7 +54,9 @@ const AddClass = () => {
   };
   return (
     <div>
-      <SectionHeading>Add a Class</SectionHeading>
+      <SectionHeading title="Add a Class">
+        you can add your class, we add some content automatically
+      </SectionHeading>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-3xl space-y-6 mx-auto bg-base-300 p-16"
@@ -95,7 +98,8 @@ const AddClass = () => {
                 Instructor Name <span className="text-red-500">*</span>
               </span>
             </label>
-            <input {...register('instructor')}
+            <input
+              {...register("instructor")}
               type="text"
               className="input input-bordered w-full"
               defaultValue={`${user?.displayName}`}
@@ -108,7 +112,8 @@ const AddClass = () => {
                 Instructor Email <span className="text-red-500">*</span>
               </span>
             </label>
-            <input {...register('instructorEmail')}
+            <input
+              {...register("instructorEmail")}
               type="text"
               className="input input-bordered w-full"
               defaultValue={`${user?.email}`}
@@ -145,7 +150,7 @@ const AddClass = () => {
           </div>
         </div>
         <div type="submit" className="text-end">
-          <CampBtn>Add Class</CampBtn>
+          <CampBtn>Add Class <FaPlusCircle/></CampBtn>
         </div>
       </form>
     </div>

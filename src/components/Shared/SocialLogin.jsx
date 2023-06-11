@@ -23,7 +23,6 @@ const SocialLogin = () => {
           const newUser = {
             name: loggedUser?.displayName || "unknown",
             email: loggedUser?.email,
-            role: "student",
             image: loggedUser?.photoURL,
           };
 

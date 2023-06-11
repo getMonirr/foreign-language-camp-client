@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 import CampContainer from "../../../components/Shared/CampContainer";
 import { RiSideBarFill } from "react-icons/ri";
-import Sidebar from "./SideBar/SideBar";
-import UpSidebar from "./SideBar/UpSideBar";
 import BottomSidebar from "./SideBar/BottomSidebar";
+import UpSidebar from "./SideBar/UpSidebar";
+import Sidebar from "./SideBar/Sidebar";
 
 const Dashboard = () => {
   return (
@@ -30,7 +30,7 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side dash-menu">
             <label htmlFor="my-drawer " className="drawer-overlay"></label>
-            <ul className="menu pr-0 w-80  min-h-screen bg-camp-primary text-white pl-16 flex justify-evenly">
+            <ul className="menu pr-0 w-80  min-h-screen bg-camp-bg-2 text-white flex justify-between">
               {/* Sidebar content here */}
               <div>
                 <UpSidebar />

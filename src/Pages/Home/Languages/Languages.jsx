@@ -51,7 +51,7 @@ const Languages = () => {
       <div className="mt-16 lg:-mt-40 lg:px-24 relative languageSwiper">
         <Swiper
           modules={[Navigation]}
-          slidesPerView={1}
+          slidesPerView={3}
           spaceBetween={30}
           navigation={{
             nextEl: ".swiper-button-next-lan",

@@ -102,7 +102,10 @@ const ManageClasses = () => {
 
   return (
     <div>
-      <SectionHeading>Manage All Classes</SectionHeading>
+      <SectionHeading title="Manage All Classes">
+        Here you can manage all classes. you can deny, approve and also can send
+        a feedback to instructor
+      </SectionHeading>
       <div>
         <div className="overflow-x-auto">
           <table className="table">

@@ -19,8 +19,10 @@ const AllInstructors = () => {
   });
 
   return (
-    <div>
-      <SectionHeading>Our All Instructors</SectionHeading>
+    <div className="my-32">
+      <SectionHeading title="Our All Instructors">
+       Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi atque ea ullam sapiente pariatur possimus, iure ipsum consectetur impedit! Ut.
+      </SectionHeading>
       <CampContainer>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-16 mb-16">
           {(instructors &&

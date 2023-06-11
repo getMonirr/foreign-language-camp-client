@@ -52,7 +52,6 @@ const Registration = () => {
                 const newUser = {
                   email: loggedUser?.email,
                   name: loggedUser?.displayName || "unknown",
-                  role: "student",
                   image: data?.photoUrl,
                 };
 
@@ -119,7 +118,7 @@ const Registration = () => {
     );
   };
   return (
-    <div className="hero min-h-[calc(100vh-100px)] bg-camp-bg-2 py-8">
+    <div className="hero min-h-[calc(100vh-100px)] bg-camp-primary-hover py-8">
       <div className="hero-content w-4/12">
         <div className="card flex-shrink-0 w-full max-w-5xl shadow-2xl bg-base-100">
           <div className="card-body">
@@ -206,9 +205,9 @@ const Registration = () => {
               <div className="form-control mt-6">
                 <button
                   type="submit"
-                  className="btn btn-primary bg-camp-primary hover:bg-camp-secondary hover:border-camp-secondary hover:text-camp-primary rounded-none hover:rounded-lg mt-6 mb-3"
+                  className="btn btn-primary bg-camp-primary hover:bg-camp-secondary hover:border-camp-secondary hover:text-white rounded-none hover:rounded-lg mt-6 mb-3"
                 >
-                  Login
+                  Register
                 </button>
               </div>
             </form>

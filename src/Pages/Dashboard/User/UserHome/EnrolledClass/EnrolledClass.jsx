@@ -20,7 +20,7 @@ const EnrolledClass = () => {
 
   return (
     <div>
-      <SectionHeading>Your Enrolled Classes</SectionHeading>
+      <SectionHeading title="My Enrolled Classes">my all enrolled class</SectionHeading>
       <CampContainer>
         <div className="overflow-x-auto">
           <table className="table">

@@ -1,27 +1,22 @@
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import CampBtn from "../../components/Shared/CampBtn";
 
 const InstructorCard = ({ instructor }) => {
-  const {
-    image,
-    name,
-    takenClasses,
-    email,
-    classesName,
-    designation,
-  } = instructor;
+  const { image, name, takenClasses, email, classesName, designation } =
+    instructor;
   return (
-    <div className="card w-full bg-base-100 shadow-xl">
-      <figure className="px-10 pt-10">
+    <div className="card w-full shadow-lg py-4 group hover:shadow-inner">
+      <figure>
         <img
           src={image}
           alt={name}
-          className="rounded-xl w-full h-[300px] object-cover object-center"
+          className="rounded-full w-fit border-4 border-gray-500 group-hover:border-camp-secondary group-hover:rotate-6 object-cover object-center group-hover:scale-90 transition-all"
         />
       </figure>
       <div className="card-body items-center text-center">
-        <h2 className="card-title -mb-1">{name}</h2>
+        <h2 className="card-title -mb-1 group-hover:text-camp-secondary">
+          {name}
+        </h2>
         <p>{designation}</p>
         <div className="text-start mt-6">
           <p>
@@ -39,11 +34,8 @@ const InstructorCard = ({ instructor }) => {
             </ul>
           </p>
         </div>
-        <div className="mr-auto mt-3">
-            <CampBtn>See all Classes</CampBtn>
-        </div>
       </div>
-      <div className="bg-camp-primary rounded-bl-xl rounded-br-xl text-white flex justify-evenly p-4 items-center">
+      <div className="rounded-bl-xl rounded-br-xl flex justify-evenly p-4 items-center">
         <Link to="">
           <FaFacebook className="hover:text-camp-secondary h-6 w-6" />
         </Link>
@@ -55,6 +47,14 @@ const InstructorCard = ({ instructor }) => {
         </Link>
       </div>
     </div>
+    // <div>
+    //   <div>
+    //     <img src={image} alt={name} />
+    //   </div>
+    //   <div>
+
+    //   </div>
+    // </div>
   );
 };
 

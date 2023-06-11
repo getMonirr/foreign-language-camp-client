@@ -11,7 +11,6 @@ import Hero from "./Hero";
 import bgImage from "../../../assets/bg/bg-img.jpg";
 
 const Banner = () => {
-
   // TODO: make dynamic
   const content = [
     {
@@ -41,33 +40,36 @@ const Banner = () => {
   ];
 
   return (
-    <div className="relative">
-      <div
-        style={{
-          backgroundImage: `url(${bgImage})`,
-          backgroundPosition: "-30vw 2vh",
-          opacity: "0.25",
+    <div>
+      {/* <div
+        // style={{
+        //   backgroundImage: `url(${bgImage})`,
+        //   backgroundPosition: "-30vw 2vh",
+        //   opacity: "0.25",
+        // }}
+        // style={{backgroundImage: ``}}
+        // className="absolute h-full w-full bg-black"
+      ></div> */}
+      {/* <div
+        className="absolute h-full w-full overflow-hidden"
+        style={{ background: "rgba(0,0,0,0.4)" }}
+      ></div> */}
+      <Swiper
+        navigation={true}
+        modules={[Autoplay, Navigation]}
+        spaceBetween={30}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
         }}
-        className="absolute h-full w-full bg-black"
-      ></div>
-      <CampContainer>
-        <Swiper
-          navigation={true}
-          modules={[Autoplay, Navigation]}
-          spaceBetween={30}
-          autoplay={{
-            delay: 2500,
-            disableOnInteraction: false,
-          }}
-          className="mySwipe"
-        >
-          {content.map((item, index) => (
-            <SwiperSlide key={index}>
-              <Hero content={item} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </CampContainer>
+        className="mySwipe"
+      >
+        {content.map((item, index) => (
+          <SwiperSlide key={index}>
+            <Hero content={item} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };

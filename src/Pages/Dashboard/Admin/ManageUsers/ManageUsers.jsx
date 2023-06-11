@@ -4,9 +4,11 @@ import useSecureAxios from "../../../../Hooks/useSecureAxios";
 import SectionHeading from "../../../../components/Shared/SectionHeading";
 import AdminBtn from "../../../../components/Dashboard/AdminBtn";
 import { toast } from "react-toastify";
+import useRole from "../../../../Hooks/useRole";
 
 const ManageUsers = () => {
   const { user } = useAuth();
+  const { roleRefetch } = useRole();
   const secureAxios = useSecureAxios();
   const queryClient = useQueryClient();
 
@@ -33,6 +35,7 @@ const ManageUsers = () => {
     mutationFn: updateUserRole,
     onSuccess: (data, { role }) => {
       if (data?.modifiedCount) {
+        roleRefetch;
         if (role === "instructor") {
           toast.success("user now instructor");
         } else if (role === "admin") {
@@ -56,7 +59,9 @@ const ManageUsers = () => {
 
   return (
     <>
-      <SectionHeading>Manage Users</SectionHeading>
+      <SectionHeading title="Manage Users">
+        You can manage user from here, make someone to instructor or admin
+      </SectionHeading>
       <div>
         <div className="overflow-x-auto">
           <table className="table">

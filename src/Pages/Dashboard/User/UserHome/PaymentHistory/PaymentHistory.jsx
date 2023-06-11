@@ -3,6 +3,7 @@ import CampContainer from "../../../../../components/Shared/CampContainer";
 import SectionHeading from "../../../../../components/Shared/SectionHeading";
 import useAuth from "../../../../../Hooks/useAuth";
 import useSecureAxios from "../../../../../Hooks/useSecureAxios";
+import moment from "moment/moment";
 
 const PaymentHistory = () => {
   const { user } = useAuth();
@@ -17,7 +18,7 @@ const PaymentHistory = () => {
   });
   return (
     <div>
-      <SectionHeading>Your Payment history</SectionHeading>
+      <SectionHeading title="My Payment history">Check all payment history</SectionHeading>
       <CampContainer>
         <div className="overflow-x-auto">
           <table className="table">
@@ -27,6 +28,7 @@ const PaymentHistory = () => {
                 <th>ClassDetails</th>
                 <th>Instructor Details</th>
                 <th>Price</th>
+                <th>Date</th>
                 <th>TrnxId</th>
                 <th>Status</th>
               </tr>
@@ -61,6 +63,8 @@ const PaymentHistory = () => {
                       </span>
                     </td>
                     <td>${item.price}</td>
+                    <td>{moment(item.date).format('MMMM Do YYYY, h:mm a')}</td>
+
                     <td>{item.transactionId}</td>
                     <td>Paid</td>
                   </tr>

@@ -5,13 +5,6 @@ const AdminBtn = ({
   className = "bg-green-400 hover:bg-blue-200",
 }) => {
   return (
-    // <button
-    //   onClick={handleOnClick}
-    //   disabled={disabled}
-    //   className={`btn btn-primary btn-xs ${className}`}
-    // >
-    //   {children}
-    // </button>
     <button
       onClick={handleOnClick}
       disabled={disabled}

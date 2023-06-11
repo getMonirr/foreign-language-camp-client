@@ -96,7 +96,7 @@ const SingleCard = ({ item }) => {
   return (
     <div
       className={`card lg:card-side shadow-xl mb-8 lg:mb-16 w-full max-w-5xl mx-auto ${
-        seats === 0 ? "bg-red-300" : "bg-base-200"
+        seats === 0 ? "bg-rose-400" : "bg-base-200"
       }`}
     >
       <figure className="lg:w-1/3">
@@ -116,19 +116,19 @@ const SingleCard = ({ item }) => {
         </div>
         <h2 className="card-title -mt-8">
           {name}
-          <div className="badge badge-accent">Enrolled: {enrolledStudents}</div>
+          <div className="badge badge-accent bg-camp-secondary text-white border-camp-secondary bg-opacity-80">Enrolled: {enrolledStudents}</div>
         </h2>
         <p> {instructor} </p>
         <p className="max-w-xl">{description}</p>
         <div className="space-y-2">
           <div className="flex gap-3 justify-center items-center">
-            <MdEventSeat color="#17543E" className="h-6 w-6" />
+            <MdEventSeat color="#EF2853" className="h-6 w-6" />
             <p>
               Available Seats: <span className="font-bold">{seats}</span>
             </p>
           </div>
           <div className="flex gap-3 justify-center items-center">
-            <FaDollarSign color="#17543E" className="h-6 w-6" />
+            <FaDollarSign color="#EF2853" className="h-6 w-6" />
             <p>
               Price: <span className="font-bold">${price}</span>
             </p>

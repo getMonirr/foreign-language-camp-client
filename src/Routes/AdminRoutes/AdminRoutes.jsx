@@ -10,11 +10,13 @@ const AdminRoutes = ({ children }) => {
   if (loading) {
     return <Loading />;
   }
-  if (user && role == "admin") {
-    return children;
-  }
+  if (user && role) {
+    if (user && role == "admin") {
+      return children;
+    }
 
-  return <Navigate to="/login" />;
+    return <Navigate to="/login" />;
+  }
 };
 
 export default AdminRoutes;

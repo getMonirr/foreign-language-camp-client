@@ -4,7 +4,10 @@ import CampBtn from "../../../components/Shared/CampBtn";
 
 const ContactUs = () => {
   return (
-    <div className=" py-32" style={{ backgroundImage: `url(${meetingsBg})` }}>
+    <div
+      className=" py-32 bg-fixed"
+      style={{ backgroundImage: `url(${meetingsBg})` }}
+    >
       <CampContainer>
         <div className=" lg:flex justify-between items-center gap-8">
           <div className="lg:w-3/4 space-y-6 bg-white p-6 lg:p-10 rounded-2xl">
