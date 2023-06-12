@@ -106,7 +106,6 @@ const ManageClasses = () => {
         Here you can manage all classes. you can deny, approve and also can send
         a feedback to instructor
       </SectionHeading>
-      <div>
         <div className="overflow-x-auto">
           <table className="table">
             {/* head */}
@@ -192,7 +191,6 @@ const ManageClasses = () => {
             </tbody>
           </table>
         </div>
-      </div>
       <FeedbackModal
         isOpen={isOpen}
         openModal={openModal}
