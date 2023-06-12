@@ -97,6 +97,13 @@ const Navbar = () => {
           </NavLink>
         </li>
       )}
+      {!user && (
+        <Link className="block lg:hidden" to="/login">
+          <CampBtn>
+            Login <FaSignInAlt />
+          </CampBtn>
+        </Link>
+      )}
       {user && (
         <>
           <CampBtn
@@ -173,7 +180,7 @@ const Navbar = () => {
                   </div>
                 </>
               ) : (
-                <Link to="/login">
+                <Link className="lg:block hidden" to="/login">
                   <CampBtn>
                     Login <FaSignInAlt />
                   </CampBtn>

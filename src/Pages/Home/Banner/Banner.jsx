@@ -8,35 +8,18 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation, Autoplay } from "swiper";
 import Hero from "./Hero";
+import { useQuery } from "react-query";
+import axios from "axios";
 
 const Banner = () => {
-  // TODO: make dynamic
-  const content = [
-    {
-      title: "Refreshing",
-      subtitle: "Mind And Brain",
-      desc: "Meet yourself where you are mindfulness balance, tadasana intentional. Namaste inhales, exhale reach expand open intentional Bikram intentional. Rinse deeper out of your comfort zone bandha self-care hug.",
-      img: "https://picsum.photos/id/6/600/400",
+
+  const { data: content } = useQuery({
+    queryKey: ["banner"],
+    queryFn: async () => {
+      const { data } = await axios(`${import.meta.env.VITE_API_LINK}/banner`);
+      return data;
     },
-    {
-      title: "Refreshing",
-      subtitle: "Mind And Brain",
-      desc: "Meet yourself where you are mindfulness balance, tadasana intentional. Namaste inhales, exhale reach expand open intentional Bikram intentional. Rinse deeper out of your comfort zone bandha self-care hug.",
-      img: "https://picsum.photos/id/6/600/400",
-    },
-    {
-      title: "Refreshing",
-      subtitle: "Mind And Brain",
-      desc: "Meet yourself where you are mindfulness balance, tadasana intentional. Namaste inhales, exhale reach expand open intentional Bikram intentional. Rinse deeper out of your comfort zone bandha self-care hug.",
-      img: "https://picsum.photos/id/6/600/400",
-    },
-    {
-      title: "Refreshing",
-      subtitle: "Mind And Brain",
-      desc: "Meet yourself where you are mindfulness balance, tadasana intentional. Namaste inhales, exhale reach expand open intentional Bikram intentional. Rinse deeper out of your comfort zone bandha self-care hug.",
-      img: "https://picsum.photos/id/6/600/400",
-    },
-  ];
+  });
 
   return (
     <div>
@@ -50,11 +33,13 @@ const Banner = () => {
         }}
         className="mySwipe"
       >
-        {content.map((item, index) => (
-          <SwiperSlide key={index}>
-            <Hero content={item} />
-          </SwiperSlide>
-        ))}
+        {content &&
+          Array.isArray(content) &&
+          content.map((item, index) => (
+            <SwiperSlide key={index}>
+              <Hero content={item} />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );

@@ -9,8 +9,9 @@ const PopularInstructor = () => {
   return (
     <div className="my-32">
       <SectionHeading title="Popular Instructor">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius laboriosam
-        ab eligendi dolores facilis, natus itaque ex suscipit voluptas dicta.
+        Here is our popular Instructors. you can see all popular instructors
+        here. popular instructors based on the number of students enrolled in
+        their class.
       </SectionHeading>
       <CampContainer>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-16 mb-16">

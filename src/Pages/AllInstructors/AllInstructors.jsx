@@ -26,9 +26,8 @@ const AllInstructors = () => {
       <Breadcrumbs />
       <div className="my-32">
         <SectionHeading title="Our All Instructors">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi
-          atque ea ullam sapiente pariatur possimus, iure ipsum consectetur
-          impedit! Ut.
+          Here is our all instructors. you can see all all instructors here. all
+          instructors based on the status of approved. impedit! Ut.
         </SectionHeading>
         <CampContainer>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-16 mb-16">

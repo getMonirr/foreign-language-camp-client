@@ -1,22 +1,24 @@
-import { FaUser } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { RiAdminFill } from "react-icons/ri";
+import { FaBook } from "react-icons/fa";
 
 const AdminSidebar = () => {
   return (
     <>
       <li className="my-nav pl-8">
         <NavLink className="text-base" to="/dashboard/admin-home">
-          <FaUser className="mr-3" /> Admin Home
+          <RiAdminFill className="mr-3" /> Admin Home
         </NavLink>
       </li>
       <li className="my-nav pl-8">
         <NavLink className="text-base" to="/dashboard/manage-classes">
-          <FaUser className="mr-3" /> Manage Classes
+          <FaBook className="mr-3" /> Manage Classes
         </NavLink>
       </li>
       <li className="my-nav pl-8">
         <NavLink className="text-base" to="/dashboard/manage-users">
-          <FaUser className="mr-3" /> Manage Users
+          <FaUsers className="mr-3" /> Manage Users
         </NavLink>
       </li>
     </>

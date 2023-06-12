@@ -22,16 +22,22 @@ const Registration = () => {
     setIsShow(!isShow);
   };
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch } = useForm();
+  console.log(watch("password") === watch("confirm_password"));
+  console.log(watch("confirm_password"));
   const onSubmit = (data) => {
     // TODO: more work watch with password validation and confirm password
     // password validation
-    const REGEX = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z\d@$!%*?&]{6,}$/;
+    // const REGEX = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Z\d@$!%*?&]{6,}$/;
+
+    // Minimum 6 characters, at least one uppercase & lowercase letter, one number and special character:
+    const REGEX =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
     const isValid = REGEX.test(data?.password);
 
     if (!isValid)
       return setError(
-        "password must be 6 char long, at lest one Capital letter and special character"
+        "Minimum 6 characters, at least one uppercase & lowercase letter, one number and special character"
       );
     if (data?.password !== data?.confirm_password) {
       return setError("your password Does not match");
@@ -148,15 +154,55 @@ const Registration = () => {
                   </div>
                   {
                     <p className={`${error && "text-red-500"} mt-2`}>
-                      *
-                      {error ||
-                        "Password must be 6 char long, at lest one Capital letter and special character"}
+                      {error && <span className="text-xs">{error}</span>}
                     </p>
                   }
+
+                  <div className="flex flex-col gap-1">
+                    {/^.*[a-z].*$/.test(watch("password")) ? (
+                      <span className="text-green-500 text-xs">
+                        One lower case latter
+                      </span>
+                    ) : (
+                      <span className="text-red-500 text-xs">
+                        One lower case latter
+                      </span>
+                    )}
+                    {/^.*[A-Z].*$/.test(watch("password")) ? (
+                      <span className="text-green-500 text-xs">
+                        One Upper case latter
+                      </span>
+                    ) : (
+                      <span className="text-red-500 text-xs">
+                        One Upper case latter
+                      </span>
+                    )}
+                    {/^.*[@$!%*?&].*$/.test(watch("password")) ? (
+                      <span className="text-green-500 text-xs">
+                        One Special Character
+                      </span>
+                    ) : (
+                      <span className="text-red-500 text-xs">
+                        One Special Character
+                      </span>
+                    )}
+                    {/^.*\d.*$/.test(watch("password")) ? (
+                      <span className="text-green-500 text-xs">One number</span>
+                    ) : (
+                      <span className="text-red-500 text-xs">One number</span>
+                    )}
+                    {watch("password")?.length >= 6 ? (
+                      <span className="text-green-500 text-xs">
+                        6 Char long
+                      </span>
+                    ) : (
+                      <span className="text-red-500 text-xs">6 Char long</span>
+                    )}
+                  </div>
                 </div>
                 <div>
                   {renderField("password", "confirm_password")}
-                  <div className="form-control relative">
+                  <div className="form-control relative mb-2">
                     <label
                       className="cursor-pointer absolute right-4 -top-8"
                       onClick={() => setIsShowConfirm(!isShowConfirm)}
@@ -164,6 +210,11 @@ const Registration = () => {
                       {isShowConfirm ? <FaEye /> : <FaEyeSlash />}
                     </label>
                   </div>
+                  {watch("password") !== watch("confirm_password") ? (
+                    <span className="text-red-300 text-xs">Does not match</span>
+                  ) : (
+                    <span className="text-green-300 text-xs">Matched</span>
+                  )}
                 </div>
               </div>
               {renderField("url", "photoUrl")}

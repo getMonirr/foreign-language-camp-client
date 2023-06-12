@@ -25,9 +25,7 @@ const AllClasses = () => {
       <Breadcrumbs />
       <div className="my-32">
         <SectionHeading title="Our All Classes">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum magni
-          tempore, quae asperiores nemo fuga? Perspiciatis exercitationem
-          reprehenderit corrupti repellat.
+        Here is our all classes. you can see all all classes here. all class based on the status of approved.
         </SectionHeading>
         <CampContainer>
           <div className="">

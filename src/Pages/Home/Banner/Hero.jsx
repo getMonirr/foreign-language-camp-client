@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Hero = ({ content }) => {
-  const { title, subtitle, desc, img } = content;
+  const { image, name, description, instructor } = content;
   return (
     <div
-      style={{ backgroundImage: `url(${img})` }}
+      style={{ backgroundImage: `url(${image})` }}
       className="bg-no-repeat bg-cover relative"
     >
       {/* background overlay */}
@@ -28,19 +28,19 @@ const Hero = ({ content }) => {
           >
             <div className="">
               <h2 className="text-4xl lg:text-6xl font-semibold font-camp-dis ">
-                {title}
+                {name}
               </h2>
 
               <h1 className="text-4xl lg:text-6xl font-bold font-camp-dis my-4">
-                {subtitle}
+                {instructor}
               </h1>
               <p className="lg:text-lg font-normal text-white leading-8 mb-20">
-                {desc}
+                {description}
               </p>
               <Link to="classes">
-              <CampBtn>
-                Explore <FaArrowCircleRight />
-              </CampBtn>
+                <CampBtn>
+                  Explore <FaArrowCircleRight />
+                </CampBtn>
               </Link>
             </div>
           </motion.div>

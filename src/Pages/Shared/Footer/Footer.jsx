@@ -13,7 +13,7 @@ const Footer = () => {
               <img src={Logo} alt="logo" />
               <p>
                 Foreign Language Camp
-                <br />A Summer vacation Camp for Extra curriculum
+                <br />A Summer vacation Camp for learn foreign language
               </p>
             </div>
             <div>
@@ -70,7 +70,9 @@ const Footer = () => {
                 </div>
               </div>
               <div>
-                <p className="text-white">Copyright © 2023 - Foreign Language Camp</p>
+                <p className="text-white">
+                  Copyright © 2023 - Foreign Language Camp
+                </p>
               </div>
             </div>
           </CampContainer>

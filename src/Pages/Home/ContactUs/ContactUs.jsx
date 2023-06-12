@@ -65,7 +65,7 @@ const ContactUs = () => {
             </div>
             <div>
               <p>Website Url</p>
-              <p className="text-lg">www.flc.com</p>
+              <p className="text-md">foreign-language-camp.web.app</p>
               <div className="divider"></div>
             </div>
           </div>
