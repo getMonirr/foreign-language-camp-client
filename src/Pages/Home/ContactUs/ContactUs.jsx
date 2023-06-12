@@ -9,7 +9,7 @@ const ContactUs = () => {
       style={{ backgroundImage: `url(${meetingsBg})` }}
     >
       <CampContainer>
-        <div className=" lg:flex justify-between items-center gap-8">
+        <div className=" lg:flex justify-between items-center gap-8 text-black">
           <div className="lg:w-3/4 space-y-6 bg-white p-6 lg:p-10 rounded-2xl">
             <div>
               <h3 className="font-camp-dis uppercase text-camp-dis-col text-2xl font-bold">
@@ -21,17 +21,17 @@ const ContactUs = () => {
               <input
                 type="text"
                 placeholder="Name *"
-                className="input input-bordered text-white rounded-full w-full"
+                className="input input-bordered text-black rounded-full w-full"
               />
               <input
                 type="email"
                 placeholder="Your Email"
-                className="input input-bordered text-white rounded-full w-full"
+                className="input input-bordered text-black rounded-full w-full"
               />
               <input
                 type="text"
                 placeholder="Subject"
-                className="input input-bordered text-white rounded-full w-full"
+                className="input input-bordered text-black rounded-full w-full"
               />
             </div>
             <div>
