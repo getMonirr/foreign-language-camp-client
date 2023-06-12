@@ -40,8 +40,8 @@ const Login = () => {
   };
   return (
     <div className="hero min-h-[calc(100vh-100px)] bg-camp-primary-hover py-8">
-      <div className="hero-content w-3/12">
-        <div className="card flex-shrink-0 w-full max-w-5xl shadow-2xl bg-base-100">
+      <div className="hero-content lg:w-4/12">
+        <div className="card flex-shrink-0 w-full max-w-full shadow-2xl bg-base-100">
           <div className="card-body">
             <div className="text-center space-y-4">
               <h3 className="font-camp-dis text-4xl font-semibold text-camp-primary">

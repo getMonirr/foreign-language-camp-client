@@ -13,7 +13,7 @@ const PopularClasses = () => {
         popular class based on the number of students.
       </SectionHeading>
       <CampContainer>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-10 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-10 mb-16">
           {(classes &&
             Array.isArray(classes) &&
             classes.map((item) => (

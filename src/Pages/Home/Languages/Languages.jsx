@@ -47,8 +47,8 @@ const Languages = () => {
                   {/* <div className="h-full w-full bg-camp-primary-hover bg-opacity-90 absolute left-0 top-0 z-10"></div> */}
                   <div className="z-30">
                     <SiGoogleclassroom className="mx-auto h-16 w-16 lg:h-24 lg:w-24 lg:mb-6" />
-                    <p className="text-2xl lg:text-2xl my-3">{lan.name}</p>
-                    <p className="lg:text-md">
+                    <p className="text-2xl lg:text-xl my-3">{lan.name}</p>
+                    <p className="lg:text-base">
                       {lan.description?.slice(0, 70)}
                     </p>
                   </div>

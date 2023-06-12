@@ -126,7 +126,7 @@ const Registration = () => {
   };
   return (
     <div className="hero min-h-[calc(100vh-100px)] bg-camp-primary-hover py-8">
-      <div className="hero-content w-4/12">
+      <div className="hero-content lg:w-5/12">
         <div className="card flex-shrink-0 w-full max-w-5xl shadow-2xl bg-base-100">
           <div className="card-body">
             <div className="text-center space-y-4">
@@ -141,7 +141,7 @@ const Registration = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               {renderField("text", "name")}
               {renderField("email", "email")}
-              <div className="md:flex gap-4 justify-between">
+              <div className="lg:flex gap-4 justify-between">
                 <div>
                   {renderField("password", "password")}
                   <div className="form-control relative">

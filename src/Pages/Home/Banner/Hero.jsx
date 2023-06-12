@@ -20,7 +20,7 @@ const Hero = ({ content }) => {
         }}
       ></div>
       <CampContainer>
-        <div className="items-center min-h-screen py-8 relative flex justify-center text-center max-w-5xl mx-auto text-white">
+        <div className="items-center min-h-[500px] md:min-h-[800px] py-8 relative flex justify-center text-center max-w-5xl mx-auto text-white">
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
