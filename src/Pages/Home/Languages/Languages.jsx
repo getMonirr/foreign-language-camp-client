@@ -48,8 +48,8 @@ const Languages = () => {
                   <div className="z-30">
                     <SiGoogleclassroom className="mx-auto h-16 w-16 lg:h-24 lg:w-24 lg:mb-6" />
                     <p className="text-2xl lg:text-2xl my-3">{lan.name}</p>
-                    <p className="lg:text-lg">
-                      {lan.description?.slice(0, 80)}
+                    <p className="lg:text-md">
+                      {lan.description?.slice(0, 70)}
                     </p>
                   </div>
                 </div>
