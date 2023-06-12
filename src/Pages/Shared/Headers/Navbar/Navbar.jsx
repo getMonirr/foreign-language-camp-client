@@ -7,8 +7,9 @@ import useAuth from "../../../../Hooks/useAuth";
 import { toast } from "react-toastify";
 import useRole from "../../../../Hooks/useRole";
 import logo from "../../../../assets/logo/camp-logo-dark.svg";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { BsMoonStars, BsSunFill } from "react-icons/bs";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -16,9 +17,9 @@ const Navbar = () => {
   const [small, setSmall] = useState(false);
 
   // control dark mode
-  const { setDark } = useDark();
-  const handleDarkMode = (e) => {
-    setDark(e.target.checked);
+  const { dark, setDark } = useDark();
+  const handleDarkMode = () => {
+    setDark(!dark);
   };
 
   // for shrink header
@@ -173,15 +174,23 @@ const Navbar = () => {
                 </>
               ) : (
                 <Link to="/login">
-                  <CampBtn>Login</CampBtn>
+                  <CampBtn>
+                    Login <FaSignInAlt />
+                  </CampBtn>
                 </Link>
               )}
               <div className="ml-4">
-                <input
-                  onClick={handleDarkMode}
-                  type="checkbox"
-                  className="toggle"
-                />
+                <div onClick={handleDarkMode} className="cursor-pointer">
+                  {dark ? (
+                    <div className="flex justify-center items-center gap-3">
+                      <BsMoonStars /> <span>Dark</span>
+                    </div>
+                  ) : (
+                    <p className="flex justify-center items-center gap-3">
+                      <BsSunFill /> Light
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>

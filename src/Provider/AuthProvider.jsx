@@ -46,7 +46,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (loggedUser) => {
       setUser(loggedUser);
-      
+
       if (loggedUser) {
         const userInfo = {
           email: loggedUser?.email,
@@ -59,10 +59,10 @@ const AuthProvider = ({ children }) => {
             const token = res?.data?.token;
             if (token) {
               localStorage.setItem("camp-access-token", token);
-            } else {
-              localStorage.removeItem("camp-access-token");
             }
           });
+      } else {
+        localStorage.removeItem("camp-access-token");
       }
       setLoading(false);
     });

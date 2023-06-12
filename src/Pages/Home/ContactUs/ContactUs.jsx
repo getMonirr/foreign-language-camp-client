@@ -21,22 +21,22 @@ const ContactUs = () => {
               <input
                 type="text"
                 placeholder="Name *"
-                className="input bg-[#f7f7f7] text-white rounded-full w-full"
+                className="input input-bordered text-white rounded-full w-full"
               />
               <input
                 type="email"
                 placeholder="Your Email"
-                className="input bg-[#f7f7f7] text-white rounded-full w-full"
+                className="input input-bordered text-white rounded-full w-full"
               />
               <input
                 type="text"
                 placeholder="Subject"
-                className="input bg-[#f7f7f7] text-white rounded-full w-full"
+                className="input input-bordered text-white rounded-full w-full"
               />
             </div>
             <div>
               <textarea
-                className="textarea textarea-bordered w-full h-40 rounded-2xl"
+                className="textarea textarea-bordered w-full h-32 rounded-2xl"
                 placeholder="Message"
               ></textarea>
             </div>

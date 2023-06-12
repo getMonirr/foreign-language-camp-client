@@ -4,6 +4,7 @@ import ClassCard from "./ClassCard";
 import CampContainer from "../../../components/Shared/CampContainer";
 import CampBtn from "../../../components/Shared/CampBtn";
 
+
 const PopularClasses = () => {
   const { classes } = useClasses();
   return (
@@ -20,7 +21,7 @@ const PopularClasses = () => {
               <ClassCard key={item._id} item={item} />
             ))) || <>Not Class Found</>}
         </div>
-        <div className="text-center mt-20">
+        <div className="text-center mt-32">
           <CampBtn>Show All Class</CampBtn>
         </div>
       </CampContainer>

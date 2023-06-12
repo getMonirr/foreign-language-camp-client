@@ -1,7 +1,7 @@
 import CampBtn from "../../components/Shared/CampBtn";
 import { Rating } from "@smastrom/react-rating";
 import { MdEventSeat } from "react-icons/md";
-import { FaDollarSign } from "react-icons/fa";
+import { FaDollarSign, FaPlusCircle } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -116,7 +116,9 @@ const SingleCard = ({ item }) => {
         </div>
         <h2 className="card-title -mt-8">
           {name}
-          <div className="badge badge-accent bg-camp-secondary text-white border-camp-secondary bg-opacity-80">Enrolled: {enrolledStudents}</div>
+          <div className="badge badge-accent bg-camp-secondary text-white border-camp-secondary bg-opacity-80">
+            Enrolled: {enrolledStudents}
+          </div>
         </h2>
         <p> {instructor} </p>
         <p className="max-w-xl">{description}</p>
@@ -144,7 +146,7 @@ const SingleCard = ({ item }) => {
               role === "instructor"
             }
           >
-            Add To Select
+            Add To Select <FaPlusCircle />
           </CampBtn>
         </div>
       </div>

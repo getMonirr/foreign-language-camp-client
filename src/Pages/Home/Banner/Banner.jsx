@@ -1,4 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import "./Banner.css";
 
 // Import Swiper styles
 import "swiper/css";
@@ -6,9 +7,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Navigation, Autoplay } from "swiper";
-import CampContainer from "../../../components/Shared/CampContainer";
 import Hero from "./Hero";
-import bgImage from "../../../assets/bg/bg-img.jpg";
 
 const Banner = () => {
   // TODO: make dynamic
@@ -41,19 +40,6 @@ const Banner = () => {
 
   return (
     <div>
-      {/* <div
-        // style={{
-        //   backgroundImage: `url(${bgImage})`,
-        //   backgroundPosition: "-30vw 2vh",
-        //   opacity: "0.25",
-        // }}
-        // style={{backgroundImage: ``}}
-        // className="absolute h-full w-full bg-black"
-      ></div> */}
-      {/* <div
-        className="absolute h-full w-full overflow-hidden"
-        style={{ background: "rgba(0,0,0,0.4)" }}
-      ></div> */}
       <Swiper
         navigation={true}
         modules={[Autoplay, Navigation]}

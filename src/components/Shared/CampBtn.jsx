@@ -24,7 +24,7 @@ const CampBtn = ({
     <button
       disabled={disabled}
       onClick={handleOnClick}
-      className={`border-camp-secondary hover:text-camp-secondary  bg-camp-secondary hover:bg-white hover:border-camp-secondary hover:border-2 rounded-full ${className}`}
+      className={`border-camp-secondary hover:text-camp-secondary border-2  bg-camp-secondary hover:bg-white hover:border-camp-secondary hover:border-2 rounded-full ${className}`}
     >
       {children}
     </button>

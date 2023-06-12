@@ -5,6 +5,8 @@ import SectionHeading from "../../../../components/Shared/SectionHeading";
 import AdminBtn from "../../../../components/Dashboard/AdminBtn";
 import { toast } from "react-toastify";
 import useRole from "../../../../Hooks/useRole";
+import { FaUser, FaUserGraduate } from "react-icons/fa";
+import { RiAdminFill } from "react-icons/ri";
 
 const ManageUsers = () => {
   const { user } = useAuth();
@@ -23,7 +25,7 @@ const ManageUsers = () => {
 
   // update user role
   const updateUserRole = async ({ email, role }) => {
-    const { data } = await secureAxios.put(`/users?email=${email}`, {
+    const { data } = await secureAxios.patch(`/users?email=${email}`, {
       role,
     });
     return data;
@@ -98,7 +100,18 @@ const ManageUsers = () => {
                       </div>
                     </td>
                     <td>{user.email}</td>
-                    <td>{user.role}</td>
+                    <td>
+                      <div className="flex justify-start items-center gap-2">
+                        {user.role === "admin" ? (
+                          <RiAdminFill />
+                        ) : user.role === "instructor" ? (
+                          <FaUserGraduate />
+                        ) : (
+                          <FaUser />
+                        )}
+                        {user.role}
+                      </div>
+                    </td>
                     <th className="text-center">
                       <AdminBtn
                         handleOnClick={() => handleMakeAdmin(user.email)}

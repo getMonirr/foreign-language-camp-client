@@ -63,7 +63,7 @@ const MyClasses = () => {
                     <td>{item.seats}</td>
                     <td>{item.status}</td>
                     <td>
-                      {(item?.feedback && item?.feedback) || "no feedback"}
+                      {(item?.feedback && item?.feedback) || "no feedback yet"}
                     </td>
                     <td className="text-center">
                       <AdminBtn>Update</AdminBtn>

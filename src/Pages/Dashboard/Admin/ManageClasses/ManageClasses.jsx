@@ -56,7 +56,7 @@ const ManageClasses = () => {
       if (data?.modifiedCount) {
         if (status === "approved") {
           toast.success("Class has been approved.");
-        } else if (status === "deny") {
+        } else if (status === "denied") {
           toast.error("Class has been denied.");
         }
       }
@@ -85,7 +85,7 @@ const ManageClasses = () => {
 
   // handle deny class
   const handleDenyClass = (id) => {
-    mutation.mutate({ id, status: "deny" });
+    mutation.mutate({ id, status: "denied" });
   };
 
   // handle approved
@@ -116,7 +116,7 @@ const ManageClasses = () => {
                 <th>Class Details</th>
                 <th>Instructor Details</th>
                 <th>Available Seats</th>
-                <th>Enrolled Students</th>
+                <th>Enrolled</th>
                 <th>Price</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -164,7 +164,7 @@ const ManageClasses = () => {
                         handleOnClick={() => handleDenyClass(item._id)}
                         className="bg-red-300 hover:bg-blue-200"
                         disabled={
-                          item.status === "deny" || item.status === "approved"
+                          item.status === "denied" || item.status === "approved"
                         }
                       >
                         Deny
@@ -174,7 +174,7 @@ const ManageClasses = () => {
                       <AdminBtn
                         handleOnClick={() => handleApprovedClass(item._id)}
                         disabled={
-                          item.status === "deny" || item.status === "approved"
+                          item.status === "denied" || item.status === "approved"
                         }
                       >
                         Approve

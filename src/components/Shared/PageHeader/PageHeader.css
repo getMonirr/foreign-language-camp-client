@@ -1,0 +1,3 @@
+.breadcrumbs .active{
+    @apply text-white
+}

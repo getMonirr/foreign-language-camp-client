@@ -28,7 +28,7 @@ const SocialLogin = () => {
 
           const data = await putUser(newUser);
 
-          if (data?.upsertedCount || data?.matchedCount) {
+          if (data?.exist || data?.insertedId) {
             toast.success("Log in successful", {
               position: "top-right",
               autoClose: 5000,

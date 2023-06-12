@@ -106,32 +106,31 @@ const CheckOutForm = ({ item }) => {
   return (
     <>
       {paymentErr && <p className="text-red-500 mb-2">{paymentErr}</p>}
-      <form className="camp" onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
+      <div className="">
+        <form className="camp bg-base-300 p-12 rounded-xl" onSubmit={handleSubmit}>
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "16px",
+                  color: "#424770",
+                  "::placeholder": {
+                    color: "#aab7c4",
+                  },
+                },
+                invalid: {
+                  color: "#9e2146",
                 },
               },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-        {/* <button type="submit" className="btn btn-primary">
-          Pay
-        </button> */}
-        <div>
-          <CampBtn disabled={!stripe || !clientSecret || isLoading}>
-            <MdPayment /> Pay <FaArrowRight />
-          </CampBtn>
-        </div>
-      </form>
+            }}
+          />
+          <div className="text-center max-w-xs ml-auto mr-48 mt-4">
+            <CampBtn disabled={!stripe || !clientSecret || isLoading}>
+              <MdPayment /> Pay <FaArrowRight />
+            </CampBtn>
+          </div>
+        </form>
+      </div>
     </>
   );
 };

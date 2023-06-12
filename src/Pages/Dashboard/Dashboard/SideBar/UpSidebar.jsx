@@ -1,15 +1,15 @@
 import useAuth from "../../../../Hooks/useAuth";
-import logo from "../../../../assets/logo/camp-logo-dark.svg";
+// import logo from "../../../../assets/logo/camp-logo-dark.svg";
 
 const UpSidebar = () => {
   const { user } = useAuth();
 
   return (
     <div className="flex flex-col justify-between items-center">
-      <div className=" mt-4">
+      {/* <div className=" mt-4">
         <img src={logo} alt="logo" />
         <div className="divider after:bg-camp-secondary before:bg-camp-secondary"></div>
-      </div>
+      </div> */}
       <div className="text-center">
         <div className="avatar">
           <div className="w-24 rounded-full ring ring-offset-camp-secondary  ring-offset-2">

@@ -116,17 +116,16 @@ const SelectedClasses = () => {
                     <td>{item.enrolledStudents}</td>
                     <th>
                       <AdminBtn
-                        icon={FaTrashAlt}
                         className="bg-red-300"
                         handleOnClick={() => handleClassDelete(item._id)}
                       >
-                        Delete
+                        <FaTrashAlt className="text-rose-700" /> Delete
                       </AdminBtn>
                     </th>
                     <th>
                       <Link to={`/dashboard/payment/${item?._id}`}>
-                        <AdminBtn icon={FaMoneyBillAlt}>
-                          Pay <span>${item.price}</span>
+                        <AdminBtn>
+                          <FaMoneyBillAlt className="text-green-800" /> Pay <span>${item.price}</span>
                         </AdminBtn>
                       </Link>
                     </th>

@@ -4,6 +4,7 @@ import { RiSideBarFill } from "react-icons/ri";
 import BottomSidebar from "./SideBar/BottomSidebar";
 import UpSidebar from "./SideBar/UpSidebar";
 import Sidebar from "./SideBar/Sidebar";
+import PageHeader from "../../../components/Shared/PageHeader/PageHeader";
 
 const Dashboard = () => {
   return (
@@ -14,8 +15,11 @@ const Dashboard = () => {
           <div className="drawer-content">
             {/* Page content here */}
             <div>
-              <div className="bg-camp-primary h-20 flex justify-center items-center text-white sticky top-0">
+              {/* <div className="bg-camp-primary h-20 flex justify-center items-center text-white sticky top-0">
                 <h4>kisu ecte</h4>
+              </div> */}
+              <div className="ml-1">
+                <PageHeader height="" />
               </div>
               <div className="bg-white p-8 min-h-[calc(100vh-80px)]">
                 <Outlet />
@@ -30,7 +34,7 @@ const Dashboard = () => {
           </div>
           <div className="drawer-side dash-menu">
             <label htmlFor="my-drawer " className="drawer-overlay"></label>
-            <ul className="menu pr-0 w-80  min-h-screen bg-camp-bg-2 text-white flex justify-between">
+            <ul className="menu pr-0 w-80  min-h-screen bg-camp-bg-2 text-white flex justify-between py-20">
               {/* Sidebar content here */}
               <div>
                 <UpSidebar />

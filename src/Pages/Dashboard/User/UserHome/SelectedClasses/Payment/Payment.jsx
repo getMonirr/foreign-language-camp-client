@@ -26,7 +26,6 @@ const Payment = () => {
     },
     enabled: Boolean(id && user),
   });
-  console.log(item);
 
   return (
     <div>

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import putUser from "../../API/putUser";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Registration = () => {
   const { createUser, logOut } = useAuth();
@@ -57,7 +58,7 @@ const Registration = () => {
 
                 // put user in database
                 const serverRes = await putUser(newUser);
-                if (serverRes?.upsertedCount) {
+                if (serverRes?.insertedId) {
                   toast.success("Registration successful, login now", {
                     position: "top-right",
                     autoClose: 5000,
@@ -137,14 +138,12 @@ const Registration = () => {
               <div className="md:flex gap-4 justify-between">
                 <div>
                   {renderField("password", "password")}
-                  <div className="form-control">
-                    <label className="label cursor-pointer justify-start gap-4">
-                      <input
-                        onChange={handleShowPassword}
-                        type="checkbox"
-                        className="checkbox"
-                      />
-                      <span className="label-text">Show Password</span>
+                  <div className="form-control relative">
+                    <label
+                      className="cursor-pointer absolute right-4 -top-8"
+                      onClick={handleShowPassword}
+                    >
+                      {isShow ? <FaEye /> : <FaEyeSlash />}
                     </label>
                   </div>
                   {
@@ -157,14 +156,12 @@ const Registration = () => {
                 </div>
                 <div>
                   {renderField("password", "confirm_password")}
-                  <div className="form-control">
-                    <label className="label cursor-pointer justify-start gap-4">
-                      <input
-                        onClick={() => setIsShowConfirm(!isShowConfirm)}
-                        type="checkbox"
-                        className="checkbox"
-                      />
-                      <span className="label-text">Show Password</span>
+                  <div className="form-control relative">
+                    <label
+                      className="cursor-pointer absolute right-4 -top-8"
+                      onClick={() => setIsShowConfirm(!isShowConfirm)}
+                    >
+                      {isShowConfirm ? <FaEye /> : <FaEyeSlash />}
                     </label>
                   </div>
                 </div>

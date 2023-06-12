@@ -39,7 +39,7 @@ const Footer = () => {
                 <div className="relative">
                   <input
                     type="text"
-                    placeholder="username@site.com"
+                    placeholder="email"
                     className="input input-bordered w-full pr-16 text-black"
                   />
                   <button className="btn bg-camp-primary text-white hover:text-black absolute top-0 right-0 rounded-l-none">
